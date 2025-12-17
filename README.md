@@ -47,14 +47,17 @@ El objetivo principal del proyecto es ofrecer una herramienta sencilla, privada 
 fitTrack/
 │
 ├── backend/              # API REST (Django)
+│   ├── api/
+│   ├── fitness_tracker/
+│   ├── venv/
+│   ├── db.sqlite3       # en desarrollo
 │   ├── manage.py
-│   ├── config/
-│   ├── apps/
 │   └── requirements.txt
 │
-├── frontend/             # SPA (React + TypeScript)
+├── frontend/             # React + TypeScript
 │   ├── src/
-│   ├── public/
+│   ├── .gitignore
+│   ├── index.html
 │   ├── package.json
 │   └── vite.config.ts
 │
@@ -97,6 +100,7 @@ pip install -r requirements.txt
 4. Aplica migraciones:
 
 ```bash
+python manage.py makemigrations
 python manage.py migrate
 ```
 
