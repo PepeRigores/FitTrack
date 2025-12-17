@@ -20,7 +20,7 @@ El objetivo principal del proyecto es ofrecer una herramienta sencilla, privada 
 ## 🧱 Stack tecnológico
 
 ### Backend
-- Python 3
+- Python3
 - Django
 - Django REST Framework
 - Autenticación JWT (`djangorestframework-simplejwt`)
@@ -70,7 +70,7 @@ fitTrack/
 ## 🚀 Instalación y ejecución en local
 
 ### Requisitos previos
-- Python 3.10 o superior
+- Python3.10 o superior
 - Node.js 18 o superior
 - Git
 
@@ -86,9 +86,9 @@ cd backend
 2. Crea y activa un entorno virtual:
 
 ```bash
-python -m venv venv
+python3 -m venv venv
 source venv/bin/activate   # Linux / macOS
-venv\Scripts\activate      # Windows
+#venv\Scripts\activate      # Windows
 ```
 
 3. Instala dependencias:
@@ -100,14 +100,14 @@ pip install -r requirements.txt
 4. Aplica migraciones:
 
 ```bash
-python manage.py makemigrations
-python manage.py migrate
+python3 manage.py makemigrations
+python3 manage.py migrate
 ```
 
 5. Ejecuta el servidor:
 
 ```bash
-python manage.py runserver
+python3 manage.py runserver
 ```
 
 📍 El backend estará disponible en:
@@ -167,8 +167,8 @@ Authorization: Bearer <token>
 
 ## 👥 Equipo de desarrollo
 
-* **Sebastián** – Backend / API REST / Base de datos
-* **Pepe** – Frontend / UI / Integración cliente-servidor
+* **Sebastián Cava** – Backend / API REST / Base de datos
+* **Jose Conesa** – Frontend / UI / Integración cliente-servidor
 
 Proyecto desarrollado como parte del ciclo formativo de **Desarrollo de Aplicaciones Web (DAW)**.
 
@@ -187,4 +187,3 @@ No está destinado a uso comercial.
 * Documentación Django REST Framework: [https://www.django-rest-framework.org/](https://www.django-rest-framework.org/)
 * Documentación React: [https://react.dev/](https://react.dev/)
 
-```
