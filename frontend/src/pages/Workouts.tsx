@@ -49,7 +49,7 @@ const Workouts: React.FC = () => {
 
     const handleDelete = async (e: React.MouseEvent, id: number) => {
         e.stopPropagation();
-        if (window.confirm('Are you sure you want to delete this workout?')) {
+        if (window.confirm('¿Estás seguro de que deseas eliminar este entrenamiento?')) {
             try {
                 await deleteEntrenamiento(id);
                 setWorkouts(workouts.filter(w => w.id !== id));
@@ -71,14 +71,14 @@ const Workouts: React.FC = () => {
     return (
         <Layout>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-                <h1 style={{ fontSize: '2rem', fontWeight: 700 }}>Workouts</h1>
+                <h1 style={{ fontSize: '2rem', fontWeight: 700 }}>Entrenamientos</h1>
                 <Button onClick={openModal} icon={<Plus size={20} />}>
-                    New Workout
+                    Nuevo Entrenamiento
                 </Button>
             </div>
 
             {isLoading ? (
-                <div>Loading...</div>
+                <div>Cargando...</div>
             ) : (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                     {workouts.map((workout) => (
@@ -126,28 +126,28 @@ const Workouts: React.FC = () => {
             <Modal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
-                title="New Workout"
+                title="Nuevo Entrenamiento"
             >
                 <form onSubmit={handleSave}>
                     <Input
                         type="datetime-local"
-                        label="Date & Time"
+                        label="Fecha y Hora"
                         value={currentWorkout.fecha ? currentWorkout.fecha.slice(0, 16) : ''}
                         onChange={(e) => setCurrentWorkout({ ...currentWorkout, fecha: e.target.value })}
                         required
                     />
 
                     <Input
-                        label="Location"
+                        label="Lugar"
                         value={currentWorkout.lugar || ''}
                         onChange={(e) => setCurrentWorkout({ ...currentWorkout, lugar: e.target.value })}
-                        placeholder="e.g. Gym, Home, Park"
+                        placeholder="ej. Gimnasio, Casa, Parque"
                         required
                     />
 
                     <div style={{ marginBottom: '1.5rem' }}>
                         <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: 500, color: 'var(--text-secondary)' }}>
-                            Notes
+                            Notas
                         </label>
                         <textarea
                             value={currentWorkout.notas || ''}
@@ -169,10 +169,10 @@ const Workouts: React.FC = () => {
 
                     <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '1rem' }}>
                         <Button type="button" variant="ghost" onClick={() => setIsModalOpen(false)}>
-                            Cancel
+                            Cancelar
                         </Button>
                         <Button type="submit" isLoading={isSaving}>
-                            Create Workout
+                            Crear Entrenamiento
                         </Button>
                     </div>
                 </form>

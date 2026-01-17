@@ -14,14 +14,20 @@ const ProtectedRoute = ({ children }: { children: React.ReactElement }) => {
   return isAuthenticated ? children : <Navigate to="/login" />;
 };
 
+import LandingPage from './pages/LandingPage';
+// ... other imports
+
+// ... ProtectedRoute
+
 const App: React.FC = () => {
   return (
     <AuthProvider>
       <Router>
         <Routes>
+          <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/" element={
+          <Route path="/dashboard" element={
             <ProtectedRoute>
               <Dashboard />
             </ProtectedRoute>

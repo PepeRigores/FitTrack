@@ -34,6 +34,7 @@ const Button: React.FC<ButtonProps> = ({
                 return {
                     backgroundColor: 'var(--danger)',
                     color: '#ffffff',
+                    marginRight: '2rem',
                 };
             case 'ghost':
                 return {

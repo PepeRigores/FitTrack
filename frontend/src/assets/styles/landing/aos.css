@@ -1,0 +1,10 @@
+/* 
+ * AOS (Animate On Scroll) - Disabled Opacity/Transform for visibility 
+ * Logic Modified: All elements forced to be visible.
+ */
+
+[data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+}

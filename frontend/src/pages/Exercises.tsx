@@ -62,7 +62,7 @@ const Exercises: React.FC = () => {
     };
 
     const handleDelete = async (id: number) => {
-        if (window.confirm('Are you sure you want to delete this exercise?')) {
+        if (window.confirm('¿Estás seguro de que deseas eliminar este ejercicio?')) {
             try {
                 await deleteEjercicio(id);
                 setExercises(exercises.filter(ex => ex.id !== id));
@@ -86,9 +86,9 @@ const Exercises: React.FC = () => {
     return (
         <Layout>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-                <h1 style={{ fontSize: '2rem', fontWeight: 700 }}>Exercises</h1>
+                <h1 style={{ fontSize: '2rem', fontWeight: 700 }}>Ejercicios</h1>
                 <Button onClick={() => openModal()} icon={<Plus size={20} />}>
-                    Add Exercise
+                    Añadir Ejercicio
                 </Button>
             </div>
 
@@ -96,7 +96,7 @@ const Exercises: React.FC = () => {
                 <div style={{ position: 'relative', maxWidth: '400px' }}>
                     <Search style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-secondary)' }} size={20} />
                     <Input
-                        placeholder="Search exercises..."
+                        placeholder="Buscar ejercicios..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         style={{ paddingLeft: '3rem' }}
@@ -105,32 +105,32 @@ const Exercises: React.FC = () => {
             </div>
 
             {isLoading ? (
-                <div>Loading...</div>
+                <div>Cargando...</div>
             ) : (
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1.5rem' }}>
                     {filteredExercises.map((exercise) => (
                         <Card key={exercise.id} title={exercise.nombre}>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1.5rem' }}>
                                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                    <span style={{ color: 'var(--text-secondary)' }}>Category:</span>
+                                    <span style={{ color: 'var(--text-secondary)' }}>Categoría:</span>
                                     <span style={{ fontWeight: 500 }}>{exercise.categoria}</span>
                                 </div>
                                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                    <span style={{ color: 'var(--text-secondary)' }}>Type:</span>
+                                    <span style={{ color: 'var(--text-secondary)' }}>Tipo:</span>
                                     <span style={{ fontWeight: 500 }}>{exercise.tipo}</span>
                                 </div>
                                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                    <span style={{ color: 'var(--text-secondary)' }}>Unit:</span>
+                                    <span style={{ color: 'var(--text-secondary)' }}>Unidad:</span>
                                     <span style={{ fontWeight: 500 }}>{exercise.unidad}</span>
                                 </div>
                             </div>
 
                             <div style={{ display: 'flex', gap: '1rem', marginTop: 'auto' }}>
                                 <Button variant="secondary" size="sm" onClick={() => openModal(exercise)} icon={<Edit2 size={16} />}>
-                                    Edit
+                                    Editar
                                 </Button>
                                 <Button variant="danger" size="sm" onClick={() => handleDelete(exercise.id)} icon={<Trash2 size={16} />}>
-                                    Delete
+                                    Eliminar
                                 </Button>
                             </div>
                         </Card>
@@ -141,11 +141,11 @@ const Exercises: React.FC = () => {
             <Modal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
-                title={currentExercise.id ? 'Edit Exercise' : 'New Exercise'}
+                title={currentExercise.id ? 'Editar Ejercicio' : 'Nuevo Ejercicio'}
             >
                 <form onSubmit={handleSave}>
                     <Input
-                        label="Name"
+                        label="Nombre"
                         value={currentExercise.nombre || ''}
                         onChange={(e) => setCurrentExercise({ ...currentExercise, nombre: e.target.value })}
                         required
@@ -153,7 +153,7 @@ const Exercises: React.FC = () => {
 
                     <div style={{ marginBottom: '1rem' }}>
                         <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: 500, color: 'var(--text-secondary)' }}>
-                            Category
+                            Categoría
                         </label>
                         <select
                             value={currentExercise.categoria || 'Pecho'}
@@ -177,7 +177,7 @@ const Exercises: React.FC = () => {
 
                     <div style={{ marginBottom: '1rem' }}>
                         <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: 500, color: 'var(--text-secondary)' }}>
-                            Type
+                            Tipo
                         </label>
                         <select
                             value={currentExercise.tipo || 'Fuerza'}
@@ -200,7 +200,7 @@ const Exercises: React.FC = () => {
                     </div>
 
                     <Input
-                        label="Unit (e.g., reps, min, km)"
+                        label="Unidad (e.g., reps, min, km)"
                         value={currentExercise.unidad || ''}
                         onChange={(e) => setCurrentExercise({ ...currentExercise, unidad: e.target.value })}
                         required
@@ -208,7 +208,7 @@ const Exercises: React.FC = () => {
 
                     <div style={{ marginBottom: '1.5rem' }}>
                         <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: 500, color: 'var(--text-secondary)' }}>
-                            Description
+                            Descripción
                         </label>
                         <textarea
                             value={currentExercise.descripcion || ''}
@@ -230,10 +230,10 @@ const Exercises: React.FC = () => {
 
                     <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '1rem' }}>
                         <Button type="button" variant="ghost" onClick={() => setIsModalOpen(false)}>
-                            Cancel
+                            Cancelar
                         </Button>
                         <Button type="submit" isLoading={isSaving}>
-                            Save Exercise
+                            Guardar Ejercicio
                         </Button>
                     </div>
                 </form>

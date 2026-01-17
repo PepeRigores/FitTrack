@@ -29,7 +29,7 @@ const Register: React.FC = () => {
         setError('');
 
         if (formData.password !== formData.confirmPassword) {
-            setError('Passwords do not match');
+            setError('Las contraseñas no coinciden');
             return;
         }
 
@@ -43,7 +43,7 @@ const Register: React.FC = () => {
             navigate('/login');
         } catch (err: any) {
             console.error('Registration error:', err);
-            setError(err.response?.data?.username?.[0] || 'Registration failed. Please try again.');
+            setError(err.response?.data?.username?.[0] || 'Registro fallido. Por favor intenta de nuevo.');
         } finally {
             setIsLoading(false);
         }
@@ -60,8 +60,8 @@ const Register: React.FC = () => {
         }}>
             <Card className="w-full max-w-md">
                 <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-                    <h1 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.5rem' }}>Create Account</h1>
-                    <p style={{ color: 'var(--text-secondary)' }}>Join Fitness Tracker today</p>
+                    <h1 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.5rem', color: 'var(--danger)' }}>Crear Cuenta</h1>
+                    <p style={{ color: 'var(--text-secondary)' }}>Únete a Fitness Tracker hoy</p>
                 </div>
 
                 {error && (
@@ -79,14 +79,14 @@ const Register: React.FC = () => {
 
                 <form onSubmit={handleSubmit}>
                     <Input
-                        label="Username"
+                        label="Usuario"
                         name="username"
                         value={formData.username}
                         onChange={handleChange}
                         required
                     />
                     <Input
-                        label="Email"
+                        label="Correo Electrónico"
                         type="email"
                         name="email"
                         value={formData.email}
@@ -94,7 +94,7 @@ const Register: React.FC = () => {
                         required
                     />
                     <Input
-                        label="Password"
+                        label="Contraseña"
                         type="password"
                         name="password"
                         value={formData.password}
@@ -102,7 +102,7 @@ const Register: React.FC = () => {
                         required
                     />
                     <Input
-                        label="Confirm Password"
+                        label="Confirmar Contraseña"
                         type="password"
                         name="confirmPassword"
                         value={formData.confirmPassword}
@@ -112,18 +112,19 @@ const Register: React.FC = () => {
 
                     <Button
                         type="submit"
+                        variant="danger"
                         isLoading={isLoading}
-                        style={{ width: '100%', marginTop: '1rem' }}
+                        style={{ width: '100%', marginTop: '1rem', color: 'white' }}
                         icon={<UserPlus size={20} />}
                     >
-                        Sign Up
+                        Registrarse
                     </Button>
                 </form>
 
                 <div style={{ marginTop: '1.5rem', textAlign: 'center', fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
-                    Already have an account?{' '}
+                    ¿Ya tienes cuenta?{' '}
                     <Link to="/login" style={{ color: 'var(--primary)', fontWeight: 500 }}>
-                        Login
+                        Inicia Sesión
                     </Link>
                 </div>
             </Card>

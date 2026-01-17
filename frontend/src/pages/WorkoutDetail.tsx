@@ -72,7 +72,7 @@ const WorkoutDetail: React.FC = () => {
     };
 
     const handleDeleteRegistro = async (registroId: number) => {
-        if (window.confirm('Remove this exercise from workout?')) {
+        if (window.confirm('¿Eliminar este ejercicio del entrenamiento?')) {
             try {
                 await deleteRegistro(registroId);
                 await fetchData();
@@ -82,8 +82,8 @@ const WorkoutDetail: React.FC = () => {
         }
     };
 
-    if (isLoading) return <div>Loading...</div>;
-    if (!workout) return <div>Workout not found</div>;
+    if (isLoading) return <div>Cargando...</div>;
+    if (!workout) return <div>Entrenamiento no encontrado</div>;
 
     return (
         <Layout>
@@ -94,7 +94,7 @@ const WorkoutDetail: React.FC = () => {
                     style={{ marginBottom: '1rem', paddingLeft: 0 }}
                     icon={<ArrowLeft size={20} />}
                 >
-                    Back to Workouts
+                    Volver a Entrenamientos
                 </Button>
 
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -107,7 +107,7 @@ const WorkoutDetail: React.FC = () => {
                         </p>
                     </div>
                     <Button onClick={() => setIsModalOpen(true)} icon={<Plus size={20} />}>
-                        Add Exercise
+                        Añadir Ejercicio
                     </Button>
                 </div>
             </div>
@@ -122,15 +122,15 @@ const WorkoutDetail: React.FC = () => {
                                 </h3>
                                 <div style={{ display: 'flex', gap: '2rem', color: 'var(--text-secondary)' }}>
                                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                                        <span style={{ fontSize: '0.875rem' }}>Sets</span>
+                                        <span style={{ fontSize: '0.875rem' }}>Series</span>
                                         <span style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--text)' }}>{registro.series}</span>
                                     </div>
                                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                                        <span style={{ fontSize: '0.875rem' }}>Reps</span>
+                                        <span style={{ fontSize: '0.875rem' }}>Repeticiones</span>
                                         <span style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--text)' }}>{registro.repeticiones}</span>
                                     </div>
                                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                                        <span style={{ fontSize: '0.875rem' }}>Weight</span>
+                                        <span style={{ fontSize: '0.875rem' }}>Peso</span>
                                         <span style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--text)' }}>{registro.peso}kg</span>
                                     </div>
                                 </div>
@@ -155,9 +155,9 @@ const WorkoutDetail: React.FC = () => {
                         border: '2px dashed var(--border)',
                         borderRadius: 'var(--radius-lg)'
                     }}>
-                        <p>No exercises added yet.</p>
+                        <p>No hay ejercicios añadidos aún.</p>
                         <Button variant="ghost" onClick={() => setIsModalOpen(true)} style={{ marginTop: '1rem' }}>
-                            Add your first exercise
+                            Añade tu primer ejercicio
                         </Button>
                     </div>
                 )}
@@ -166,12 +166,12 @@ const WorkoutDetail: React.FC = () => {
             <Modal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
-                title="Add Exercise to Workout"
+                title="Añadir Ejercicio al Entrenamiento"
             >
                 <form onSubmit={handleAddExercise}>
                     <div style={{ marginBottom: '1rem' }}>
                         <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: 500, color: 'var(--text-secondary)' }}>
-                            Exercise
+                            Ejercicio
                         </label>
                         <select
                             value={newRegistro.ejercicio || ''}
@@ -188,7 +188,7 @@ const WorkoutDetail: React.FC = () => {
                                 outline: 'none'
                             }}
                         >
-                            <option value="">Select an exercise...</option>
+                            <option value="">Selecciona un ejercicio...</option>
                             {exercises.map(ex => (
                                 <option key={ex.id} value={ex.id}>{ex.nombre}</option>
                             ))}
@@ -198,7 +198,7 @@ const WorkoutDetail: React.FC = () => {
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                         <Input
                             type="number"
-                            label="Sets"
+                            label="Series"
                             value={newRegistro.series}
                             onChange={(e) => setNewRegistro({ ...newRegistro, series: Number(e.target.value) })}
                             required
@@ -206,7 +206,7 @@ const WorkoutDetail: React.FC = () => {
                         />
                         <Input
                             type="number"
-                            label="Reps"
+                            label="Repeticiones"
                             value={newRegistro.repeticiones}
                             onChange={(e) => setNewRegistro({ ...newRegistro, repeticiones: Number(e.target.value) })}
                             required
@@ -217,7 +217,7 @@ const WorkoutDetail: React.FC = () => {
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                         <Input
                             type="number"
-                            label="Weight (kg)"
+                            label="Peso (kg)"
                             value={newRegistro.peso}
                             onChange={(e) => setNewRegistro({ ...newRegistro, peso: Number(e.target.value) })}
                             required
@@ -226,7 +226,7 @@ const WorkoutDetail: React.FC = () => {
                         />
                         <Input
                             type="number"
-                            label="Rest (sec)"
+                            label="Descanso (seg)"
                             value={newRegistro.descanso}
                             onChange={(e) => setNewRegistro({ ...newRegistro, descanso: Number(e.target.value) })}
                         />
@@ -234,10 +234,10 @@ const WorkoutDetail: React.FC = () => {
 
                     <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '1rem', marginTop: '1rem' }}>
                         <Button type="button" variant="ghost" onClick={() => setIsModalOpen(false)}>
-                            Cancel
+                            Cancelar
                         </Button>
                         <Button type="submit">
-                            Add Exercise
+                            Añadir Ejercicio
                         </Button>
                     </div>
                 </form>

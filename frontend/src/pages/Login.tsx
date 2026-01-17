@@ -22,9 +22,9 @@ const Login: React.FC = () => {
         try {
             const response = await api.post('auth/login/', { username, password });
             login(response.data.access, response.data.refresh);
-            navigate('/');
+            navigate('/dashboard');
         } catch (err) {
-            setError('Invalid credentials');
+            setError('Credenciales inválidas');
         } finally {
             setIsLoading(false);
         }
@@ -41,8 +41,8 @@ const Login: React.FC = () => {
         }}>
             <Card className="w-full max-w-md">
                 <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-                    <h1 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.5rem' }}>Welcome Back</h1>
-                    <p style={{ color: 'var(--text-secondary)' }}>Login to your account</p>
+                    <h1 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.5rem', color: 'var(--danger)' }}>Bienvenido de nuevo</h1>
+                    <p style={{ color: 'var(--text-secondary)' }}>Inicia sesión en tu cuenta</p>
                 </div>
 
                 {error && (
@@ -60,13 +60,13 @@ const Login: React.FC = () => {
 
                 <form onSubmit={handleSubmit}>
                     <Input
-                        label="Username"
+                        label="Usuario"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                         required
                     />
                     <Input
-                        label="Password"
+                        label="Contraseña"
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
@@ -75,18 +75,19 @@ const Login: React.FC = () => {
 
                     <Button
                         type="submit"
+                        variant="danger"
                         isLoading={isLoading}
-                        style={{ width: '100%', marginTop: '1rem' }}
+                        style={{ width: '100%', marginTop: '1rem', color: 'white' }}
                         icon={<LogIn size={20} />}
                     >
-                        Login
+                        Iniciar Sesión
                     </Button>
                 </form>
 
                 <div style={{ marginTop: '1.5rem', textAlign: 'center', fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
-                    Don't have an account?{' '}
+                    ¿No tienes cuenta?{' '}
                     <Link to="/register" style={{ color: 'var(--primary)', fontWeight: 500 }}>
-                        Sign up
+                        Regístrate
                     </Link>
                 </div>
             </Card>

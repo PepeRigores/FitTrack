@@ -1,14 +1,38 @@
+@font-face {
+  font-family: 'Plain';
+  src: url('/landing/fonts/Plain-Regular.woff2') format('woff2'),
+    url('/landing/fonts/Plain-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Plain';
+  src: url('/landing/fonts/Plain-Light.woff2') format('woff2'),
+    url('/landing/fonts/Plain-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Plain';
+  src: url('/landing/fonts/Plain-Bold.woff2') format('woff2'),
+    url('/landing/fonts/Plain-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
 :root {
   /* Colors */
-  --primary: #6366f1;
-  --primary-hover: #4f46e5;
+  --primary: #f13a11;
+  --primary-hover: #d12e0a;
   --secondary: #ec4899;
-  --background: #0f172a;
-  --surface: #1e293b;
-  --surface-hover: #334155;
-  --text: #f8fafc;
-  --text-secondary: #94a3b8;
-  --border: #334155;
+  --background: #171819;
+  --surface: #2b2b2b;
+  --surface-hover: #404040;
+  --text: #ffffff;
+  --text-secondary: #909090;
+  --border: #404040;
   --success: #22c55e;
   --danger: #ef4444;
   --warning: #f59e0b;
@@ -39,7 +63,7 @@
 }
 
 body {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: 'Plain', 'Inter', system-ui, -apple-system, sans-serif;
   background-color: var(--background);
   color: var(--text);
   line-height: 1.5;

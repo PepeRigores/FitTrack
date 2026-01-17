@@ -14,14 +14,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
     const navItems = [
-        { path: '/', label: 'Dashboard', icon: LayoutDashboard },
-        { path: '/entrenamientos', label: 'Workouts', icon: Calendar },
-        { path: '/ejercicios', label: 'Exercises', icon: Dumbbell },
+        { path: '/', label: 'Panel Principal', icon: LayoutDashboard },
+        { path: '/entrenamientos', label: 'Entrenamientos', icon: Calendar },
+        { path: '/ejercicios', label: 'Ejercicios', icon: Dumbbell },
     ];
 
     const handleLogout = () => {
         logout();
-        navigate('/login');
+        navigate('/');
     };
 
     return (
@@ -61,8 +61,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                     zIndex: 40,
                 }} className="sidebar-desktop">
                     <div style={{ marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                        <Dumbbell size={32} color="var(--primary)" />
-                        <span style={{ fontWeight: 800, fontSize: '1.5rem' }}>FitTrack</span>
+                        <Dumbbell size={32} color="var(--danger)" />
+                        <span style={{ fontWeight: 800, fontSize: '1.5rem', color: 'var(--danger)' }}>Fitness Track</span>
                     </div>
 
                     <nav style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
@@ -108,7 +108,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                         }}
                     >
                         <LogOut size={20} />
-                        Logout
+                        Cerrar Sesión
                     </button>
                 </aside>
 

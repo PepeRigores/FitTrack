@@ -1,6 +1,5 @@
-import React, { createContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useState, useEffect, type ReactNode } from 'react';
 import { jwtDecode } from 'jwt-decode';
-import api from '../services/api';
 
 interface AuthContextType {
     user: any;
