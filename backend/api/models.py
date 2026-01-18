@@ -16,6 +16,8 @@ class Ejercicio(models.Model):
     TIPO_CHOICES = [
         ('Fuerza', 'Fuerza'),
         ('Cardio', 'Cardio'),
+        ('Calistenia', 'Calistenia'),
+        ('Yoga', 'Yoga'),
         ('Flexibilidad', 'Flexibilidad'),
     ]
 

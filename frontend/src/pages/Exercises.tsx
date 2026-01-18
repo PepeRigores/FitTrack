@@ -94,7 +94,7 @@ const Exercises: React.FC = () => {
 
             <div style={{ marginBottom: '2rem' }}>
                 <div style={{ position: 'relative', maxWidth: '400px' }}>
-                    <Search style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-secondary)' }} size={20} />
+                    <Search style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--primary)' }} size={20} />
                     <Input
                         placeholder="Buscar ejercicios..."
                         value={searchTerm}

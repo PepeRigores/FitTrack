@@ -27,7 +27,7 @@ const Dashboard: React.FC = () => {
 
     return (
         <Layout>
-            <h1 style={{ fontSize: '2rem', fontWeight: 700, marginBottom: '2rem' }}>Panel Principal</h1>
+            <h1 style={{ fontSize: '2rem', fontWeight: 700, marginBottom: '2rem', color: 'var(--secondary)' }}>Estadísticas</h1>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem', marginBottom: '2rem' }}>
                 <Card>

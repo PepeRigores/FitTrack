@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import { AuthProvider, AuthContext } from './context/AuthContext';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -25,28 +25,30 @@ const App: React.FC = () => {
       <Router>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/dashboard" element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          } />
-          <Route path="/ejercicios" element={
-            <ProtectedRoute>
-              <Exercises />
-            </ProtectedRoute>
-          } />
-          <Route path="/entrenamientos" element={
-            <ProtectedRoute>
-              <Workouts />
-            </ProtectedRoute>
-          } />
-          <Route path="/entrenamientos/:id" element={
-            <ProtectedRoute>
-              <WorkoutDetail />
-            </ProtectedRoute>
-          } />
+          <Route element={<div className="app-theme"><Outlet /></div>}>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/dashboard" element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            } />
+            <Route path="/ejercicios" element={
+              <ProtectedRoute>
+                <Exercises />
+              </ProtectedRoute>
+            } />
+            <Route path="/entrenamientos" element={
+              <ProtectedRoute>
+                <Workouts />
+              </ProtectedRoute>
+            } />
+            <Route path="/entrenamientos/:id" element={
+              <ProtectedRoute>
+                <WorkoutDetail />
+              </ProtectedRoute>
+            } />
+          </Route>
         </Routes>
       </Router>
     </AuthProvider>

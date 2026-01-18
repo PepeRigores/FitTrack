@@ -1,27 +1,26 @@
 import React from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { LayoutDashboard, Dumbbell, Calendar, LogOut, Menu } from 'lucide-react';
-import { AuthContext } from '../context/AuthContext';
+
 
 interface LayoutProps {
     children: React.ReactNode;
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-    const { logout } = React.useContext(AuthContext);
     const location = useLocation();
-    const navigate = useNavigate();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
     const navItems = [
-        { path: '/', label: 'Panel Principal', icon: LayoutDashboard },
+        { path: '/dashboard', label: 'Estadísticas', icon: LayoutDashboard },
         { path: '/entrenamientos', label: 'Entrenamientos', icon: Calendar },
         { path: '/ejercicios', label: 'Ejercicios', icon: Dumbbell },
     ];
 
     const handleLogout = () => {
-        logout();
-        navigate('/');
+        localStorage.removeItem('token');
+        localStorage.removeItem('refreshToken');
+        window.location.href = '/';
     };
 
     return (
