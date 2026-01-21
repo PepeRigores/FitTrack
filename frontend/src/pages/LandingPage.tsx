@@ -4,6 +4,7 @@ import '../assets/styles/landing/bootstrap.min.css';
 import '../assets/styles/landing/font-awesome.min.css';
 import '../assets/styles/landing/aos.css';
 import '../assets/styles/landing/tooplate-gymso-style.css';
+import { Dumbbell } from 'lucide-react';
 
 const LandingPage = () => {
     const navigate = useNavigate();
@@ -15,7 +16,7 @@ const LandingPage = () => {
             {/* MENU BAR */}
             <nav className="navbar navbar-expand-lg fixed-top">
                 <div className="container">
-                    <a className="navbar-brand" href="#">Fitness Tracker</a>
+                    <a className="navbar-brand" href="#"><Dumbbell size={32} color="var(--danger) " /><span style={{ marginLeft: '8px' }}>Fitness Tracker</span></a>
 
                     <button
                         className="navbar-toggler"

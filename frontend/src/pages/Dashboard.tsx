@@ -36,8 +36,8 @@ const Dashboard: React.FC = () => {
                             <Activity color="var(--primary)" size={24} />
                         </div>
                         <div>
-                            <p style={{ color: 'var(--text-secondary)', fontSize: '0.875rem' }}>Entrenamientos Totales</p>
-                            <p style={{ fontSize: '1.5rem', fontWeight: 700 }}>{stats?.total_entrenamientos || 0}</p>
+                            <h3 style={{ color: 'var(--text-secondary)', fontSize: '0.875rem' }}>Entrenamientos Totales</h3>
+                            <h3 style={{ fontSize: '1.5rem', fontWeight: 700 }}>{stats?.total_entrenamientos || 0}</h3>
                         </div>
                     </div>
                 </Card>
@@ -45,11 +45,11 @@ const Dashboard: React.FC = () => {
                 <Card>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                         <div style={{ padding: '0.75rem', backgroundColor: 'rgba(236, 72, 153, 0.1)', borderRadius: 'var(--radius-md)' }}>
-                            <Dumbbell color="var(--secondary)" size={24} />
+                            <Dumbbell color="var(--red)" size={24} />
                         </div>
                         <div>
-                            <p style={{ color: 'var(--text-secondary)', fontSize: '0.875rem' }}>Ejercicios Registrados</p>
-                            <p style={{ fontSize: '1.5rem', fontWeight: 700 }}>{stats?.total_ejercicios_registrados || 0}</p>
+                            <h3 style={{ color: 'var(--text-secondary)', fontSize: '0.875rem' }}>Ejercicios Registrados</h3>
+                            <h3 style={{ fontSize: '1.5rem', fontWeight: 700 }}>{stats?.total_ejercicios_registrados || 0}</h3>
                         </div>
                     </div>
                 </Card>
@@ -60,8 +60,8 @@ const Dashboard: React.FC = () => {
                             <Calendar color="var(--success)" size={24} />
                         </div>
                         <div>
-                            <p style={{ color: 'var(--text-secondary)', fontSize: '0.875rem' }}>Días Activos</p>
-                            <p style={{ fontSize: '1.5rem', fontWeight: 700 }}>{stats?.entrenamientos_chart?.length || 0}</p>
+                            <h3 style={{ color: 'var(--text-secondary)', fontSize: '0.875rem' }}>Días Activos</h3>
+                            <h3 style={{ fontSize: '1.5rem', fontWeight: 700 }}>{stats?.entrenamientos_chart?.length || 0}</h3>
                         </div>
                     </div>
                 </Card>

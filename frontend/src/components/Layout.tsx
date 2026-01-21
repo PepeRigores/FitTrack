@@ -36,7 +36,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 top: 0,
                 zIndex: 40,
             }} className="mobile-header">
-                <span style={{ fontWeight: 700, fontSize: '1.25rem', color: 'var(--primary)' }}>FitTrack</span>
+                <a href="/"><Dumbbell size={32} color="var(--danger) " />
+                <span style={{ fontWeight: 700, fontSize: '1.25rem', color: 'var(--primary)', marginLeft:'7px' }}>Fitness Track</span></a>
                 <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
                     <Menu />
                 </button>
@@ -60,11 +61,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                     zIndex: 40,
                 }} className="sidebar-desktop">
                     <div style={{ marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                        <Dumbbell size={32} color="var(--danger)" />
-                        <span style={{ fontWeight: 800, fontSize: '1.5rem', color: 'var(--danger)' }}>Fitness Track</span>
+                        <a href="/"><Dumbbell size={32} color="var(--danger) " />
+                        <span style={{ fontWeight: 800, fontSize: '1.5rem', color: 'var(--danger)', marginLeft: '8px' }}>Fitness Track</span></a>
                     </div>
 
-                    <nav style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                    <nav style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.5rem', marginTop: '2rem' }}>
                         {navItems.map((item) => {
                             const isActive = location.pathname === item.path;
                             return (
@@ -96,7 +97,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                         style={{
                             display: 'flex',
                             alignItems: 'center',
-                            gap: '0.75rem',
+                            gap: '0.60rem',
                             padding: '0.75rem 1rem',
                             borderRadius: 'var(--radius-md)',
                             color: 'var(--danger)',
@@ -106,7 +107,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                             textAlign: 'left',
                         }}
                     >
-                        <LogOut size={20} />
+                        <LogOut size={20} color='gold'/>
                         Cerrar Sesión
                     </button>
                 </aside>

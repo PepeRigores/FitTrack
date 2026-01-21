@@ -88,20 +88,21 @@ const Exercises: React.FC = () => {
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
                 <h1 style={{ fontSize: '2rem', fontWeight: 700 }}>Ejercicios</h1>
                 <Button onClick={() => openModal()} icon={<Plus size={20} />}>
-                    Añadir Ejercicio
+                    Crear ejercicio
                 </Button>
             </div>
 
             <div style={{ marginBottom: '2rem' }}>
-                <div style={{ position: 'relative', maxWidth: '400px' }}>
+                <div style={{ position: 'relative', maxWidth: '500px' }}>
                     <Search style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--primary)' }} size={20} />
                     <Input
-                        placeholder="Buscar ejercicios..."
+                        placeholder="nombre o categoría..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         style={{ paddingLeft: '3rem' }}
                     />
                 </div>
+                
             </div>
 
             {isLoading ? (

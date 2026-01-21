@@ -115,7 +115,7 @@ const Register: React.FC = () => {
                         variant="danger"
                         isLoading={isLoading}
                         style={{ width: '100%', marginTop: '1rem', color: 'white' }}
-                        icon={<UserPlus size={20} />}
+                        icon={<UserPlus size={20} color='gold'/>}
                     >
                         Registrarse
                     </Button>
@@ -123,7 +123,7 @@ const Register: React.FC = () => {
 
                 <div style={{ marginTop: '1.5rem', textAlign: 'center', fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
                     ¿Ya tienes cuenta?{' '}
-                    <Link to="/login" style={{ color: 'var(--primary)', fontWeight: 500 }}>
+                    <Link to="/login" style={{ color: 'var(--primary)', fontWeight: 500, marginLeft: '6px' }}>
                         Inicia Sesión
                     </Link>
                 </div>

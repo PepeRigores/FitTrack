@@ -78,7 +78,7 @@ const Button: React.FC<ButtonProps> = ({
             {...props}
         >
             {isLoading && <Loader2 className="animate-spin" size={16} />}
-            {!isLoading && icon}
+            {!isLoading && icon && <span style={{ marginRight: '0.375rem' }}>{icon}</span>}
             {children}
         </button>
     );

@@ -77,8 +77,8 @@ const Login: React.FC = () => {
                         type="submit"
                         variant="danger"
                         isLoading={isLoading}
-                        style={{ width: '100%', marginTop: '1rem', color: 'white' }}
-                        icon={<LogIn size={20} />}
+                        style={{ width: '100%', marginTop: '1rem' }}
+                        icon={<LogIn size={20} color='gold' />}
                     >
                         Iniciar Sesión
                     </Button>
@@ -86,7 +86,7 @@ const Login: React.FC = () => {
 
                 <div style={{ marginTop: '1.5rem', textAlign: 'center', fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
                     ¿No tienes cuenta?{' '}
-                    <Link to="/register" style={{ color: 'var(--primary)', fontWeight: 500 }}>
+                    <Link to="/register" style={{ color: 'var(--primary)', fontWeight: 500, marginLeft: '6px' }}>
                         Regístrate
                     </Link>
                 </div>

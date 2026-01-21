@@ -88,21 +88,12 @@ const WorkoutDetail: React.FC = () => {
     return (
         <Layout>
             <div style={{ marginBottom: '2rem' }}>
-                <Button
-                    variant="ghost"
-                    onClick={() => navigate('/entrenamientos')}
-                    style={{ marginBottom: '1rem', paddingLeft: 0 }}
-                    icon={<ArrowLeft size={20} />}
-                >
-                    Volver a Entrenamientos
-                </Button>
-
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <div>
                         <h1 style={{ fontSize: '2rem', fontWeight: 700, marginBottom: '0.5rem' }}>
                             {new Date(workout.fecha).toLocaleDateString()}
                         </h1>
-                        <p style={{ color: 'var(--text-secondary)', fontSize: '1.125rem' }}>
+                        <p style={{ fontSize: '1.125rem' }}>
                             {workout.lugar}
                         </p>
                     </div>
@@ -145,7 +136,18 @@ const WorkoutDetail: React.FC = () => {
                             </Button>
                         </div>
                     </Card>
+                    
                 ))}
+                <div>
+                <Button
+                    variant="ghost"
+                    onClick={() => navigate('/entrenamientos')}
+                    style={{ marginBottom: '1rem', padding: '2px 10px 4px 5px', backgroundColor: 'var(--danger)', borderRadius: '6px' }}
+                    icon={<ArrowLeft size={20} />}
+                >
+                    <span>Volver a entrenamientos</span>
+                </Button>
+                </div>
 
                 {workout.registros.length === 0 && (
                     <div style={{
