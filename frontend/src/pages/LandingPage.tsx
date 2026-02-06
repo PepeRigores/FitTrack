@@ -1,15 +1,23 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useContext } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import '../assets/styles/landing/bootstrap.min.css';
 import '../assets/styles/landing/font-awesome.min.css';
 import '../assets/styles/landing/aos.css';
 import '../assets/styles/landing/tooplate-gymso-style.css';
-import { Dumbbell } from 'lucide-react';
+import { Dumbbell, LayoutDashboard } from 'lucide-react';
+import { AuthContext } from '../context/AuthContext';
 
 const LandingPage = () => {
     const navigate = useNavigate();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { isAuthenticated } = useContext(AuthContext);
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('refreshToken');
+        window.location.href = '/';
+    };
 
     return (
         <div data-spy="scroll" data-target="#navbarNav" data-offset="50">
@@ -62,8 +70,20 @@ const LandingPage = () => {
                             <div className="hero-text mt-5 text-center">
                                 <h6 data-aos="fade-up" data-aos-delay="300">construye un estilo de vida saludable!</h6>
                                 <h1 className="text-white" data-aos="fade-up" data-aos-delay="500">Registra tu progreso con Fitness Tracker</h1>
-                                <button onClick={() => navigate('/register')} className="btn custom-btn mt-3" data-aos="fade-up" data-aos-delay="600">Regístrate</button>
-                                <button onClick={() => navigate('/login')} className="btn custom-btn bordered mt-3" data-aos="fade-up" data-aos-delay="700">log in</button>
+                                {isAuthenticated ? (
+                                    <>
+                                        <button onClick={() => navigate('/dashboard')} className="btn custom-btn mt-3" data-aos="fade-up" data-aos-delay="600">
+                                            <LayoutDashboard className="mr-2 inline-block" size={20} />
+                                            Volver a entrar
+                                        </button>
+                                        <button onClick={handleLogout} className="btn custom-btn bordered mt-3" data-aos="fade-up" data-aos-delay="700">Cerrar sesión</button>
+                                    </>
+                                ) : (
+                                    <>
+                                        <button onClick={() => navigate('/register')} className="btn custom-btn mt-3" data-aos="fade-up" data-aos-delay="600">Regístrate</button>
+                                        <button onClick={() => navigate('/login')} className="btn custom-btn bordered mt-3" data-aos="fade-up" data-aos-delay="700">log in</button>
+                                    </>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -77,7 +97,11 @@ const LandingPage = () => {
                             <h2 className="mb-3 text-white" data-aos="fade-up">Qué es Fitness Tracker?</h2>
                             <h6 className="mb-4 text-white" data-aos="fade-up">Sencillamente... una aplicación web para registrar tus entrenamientos</h6>
                             <p data-aos="fade-up" data-aos-delay="200">Es completamente gratuita y además te aseguramos que no recibirás correo spam por nuestra parte</p>
-                            <button onClick={() => navigate('/register')} className="btn custom-btn bg-color mt-3" data-aos="fade-up" data-aos-delay="300">Regístrate y comienza!</button>
+                            {isAuthenticated ? (
+                                <button onClick={() => navigate('/dashboard')} className="btn custom-btn bg-color mt-3" data-aos="fade-up" data-aos-delay="300">Volver a entrar</button>
+                            ) : (
+                                <button onClick={() => navigate('/register')} className="btn custom-btn bg-color mt-3" data-aos="fade-up" data-aos-delay="300">Regístrate y comienza!</button>
+                            )}
                         </div>
                         <div className="mr-lg-auto mt-3 col-lg-4 col-md-6 col-12">
                             <div className="about-details">
@@ -98,7 +122,7 @@ const LandingPage = () => {
                     <div className="row">
                         <div className="col-lg-12 col-12 text-center mb-5">
                             <h6 data-aos="fade-up">crea tus ejercicios o elige entre una gran variedad de nuestro staff</h6>
-                            <h2 data-aos="fade-up" data-aos-delay="200">y organiza tus entrenamientos!</h2>
+                            <h2 data-aos="fade-up" data-aos-delay="200">y organiza tus <Link to="/dashboard" style={{ color: 'var(--red)', fontWeight: 'bold' }}>entrenamientos!</Link></h2>
                         </div>
                         <div className="col-lg-4 col-md-6 col-12" data-aos="fade-up" data-aos-delay="400">
                             <div className="class-thumb">

@@ -14,7 +14,7 @@ const Navbar: React.FC = () => {
     return (
         <nav style={{ padding: '1rem', background: '#333', color: '#fff', display: 'flex', justifyContent: 'space-between' }}>
             <div>
-                <Link to="/" style={{ color: '#fff', textDecoration: 'none', fontWeight: 'bold' }}>Fitness Tracler</Link>
+                <Link to="/" style={{ color: '#fff', textDecoration: 'none', fontWeight: 'bold' }}>Fitness Tracker</Link>
             </div>
             <div>
                 {isAuthenticated ? (

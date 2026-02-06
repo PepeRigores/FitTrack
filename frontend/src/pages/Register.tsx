@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { UserPlus } from 'lucide-react';
 import api from '../services/api';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import Input from '../components/ui/Input';
+import { AuthContext } from '../context/AuthContext';
 
 const Register: React.FC = () => {
     const [formData, setFormData] = useState({
@@ -16,6 +17,13 @@ const Register: React.FC = () => {
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
+    const { isAuthenticated } = useContext(AuthContext);
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            navigate('/dashboard');
+        }
+    }, [isAuthenticated, navigate]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({
@@ -115,7 +123,7 @@ const Register: React.FC = () => {
                         variant="danger"
                         isLoading={isLoading}
                         style={{ width: '100%', marginTop: '1rem', color: 'white' }}
-                        icon={<UserPlus size={20} color='gold'/>}
+                        icon={<UserPlus size={20} color='gold' />}
                     >
                         Registrarse
                     </Button>
