@@ -88,7 +88,6 @@ const Exercises: React.FC = () => {
             categoria: 'Pecho',
             tipo: 'Fuerza',
             unidad: 'reps',
-            descripcion: '',
             imagen: '',
             video: ''
         });
@@ -263,21 +262,13 @@ const Exercises: React.FC = () => {
                         </select>
                     </div>
 
-                    <Input
-                        label="Unidad (e.g., reps, min, km)"
-                        value={currentExercise.unidad || ''}
-                        onChange={(e) => setCurrentExercise({ ...currentExercise, unidad: e.target.value })}
-                        required
-                    />
-
-                    <div style={{ marginBottom: '1.5rem' }}>
+                    <div style={{ marginBottom: '1rem' }}>
                         <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: 500, color: 'var(--text-secondary)' }}>
-                            Descripción
+                            Unidad
                         </label>
-                        <textarea
-                            value={currentExercise.descripcion || ''}
-                            onChange={(e) => setCurrentExercise({ ...currentExercise, descripcion: e.target.value })}
-                            rows={3}
+                        <select
+                            value={currentExercise.unidad || 'reps'}
+                            onChange={(e) => setCurrentExercise({ ...currentExercise, unidad: e.target.value as any })}
                             style={{
                                 width: '100%',
                                 padding: '0.75rem 1rem',
@@ -286,11 +277,15 @@ const Exercises: React.FC = () => {
                                 backgroundColor: 'var(--surface)',
                                 color: 'var(--text)',
                                 fontSize: '1rem',
-                                outline: 'none',
-                                fontFamily: 'inherit'
+                                outline: 'none'
                             }}
-                        />
+                        >
+                            <option value="reps">Repeticiones</option>
+                            <option value="minutos">Minutos</option>
+                            <option value="km">Kilómetros</option>
+                        </select>
                     </div>
+
 
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                         <div>

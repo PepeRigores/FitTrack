@@ -8,9 +8,8 @@ export interface Ejercicio {
     id: number;
     nombre: string;
     categoria: string;
-    descripcion?: string;
     tipo: string;
-    unidad: string;
+    unidad: 'reps' | 'minutos' | 'km';
     imagen?: string;
     video?: string;
 }
@@ -21,10 +20,10 @@ export interface RegistroEjercicio {
     ejercicio: number;
     ejercicio_nombre?: string;
     ejercicio_imagen?: string;
+    ejercicio_unidad?: 'reps' | 'minutos' | 'km';
     series: number;
-    repeticiones: number;
+    cantidad: number;
     peso: number;
-    duracion?: number;
     descanso?: number;
 }
 

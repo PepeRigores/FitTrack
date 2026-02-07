@@ -24,7 +24,7 @@ const WorkoutDetail: React.FC = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [newRegistro, setNewRegistro] = useState<Partial<RegistroEjercicio>>({
         series: 3,
-        repeticiones: 10,
+        cantidad: 10,
         peso: 0,
         descanso: 60
     });
@@ -77,7 +77,7 @@ const WorkoutDetail: React.FC = () => {
             setIsModalOpen(false);
             setNewRegistro({
                 series: 3,
-                repeticiones: 10,
+                cantidad: 10,
                 peso: 0,
                 descanso: 60
             });
@@ -158,8 +158,11 @@ const WorkoutDetail: React.FC = () => {
                                                 <span style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--text)' }}>{registro.series}</span>
                                             </div>
                                             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                                                <span style={{ fontSize: '0.875rem' }}>Repeticiones</span>
-                                                <span style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--text)' }}>{registro.repeticiones}</span>
+                                                <span style={{ fontSize: '0.875rem' }}>
+                                                    {registro.ejercicio_unidad === 'minutos' ? 'Minutos' :
+                                                        registro.ejercicio_unidad === 'km' ? 'Kilómetros' : 'Repeticiones'}
+                                                </span>
+                                                <span style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--text)' }}>{registro.cantidad}</span>
                                             </div>
                                             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                                                 <span style={{ fontSize: '0.875rem' }}>Peso</span>
@@ -247,11 +250,13 @@ const WorkoutDetail: React.FC = () => {
                         />
                         <Input
                             type="number"
-                            label="Repeticiones"
-                            value={newRegistro.repeticiones}
-                            onChange={(e) => setNewRegistro({ ...newRegistro, repeticiones: Number(e.target.value) })}
+                            label={selectedExercise?.unidad === 'minutos' ? 'Minutos' :
+                                selectedExercise?.unidad === 'km' ? 'Kilómetros' : 'Repeticiones'}
+                            value={newRegistro.cantidad}
+                            onChange={(e) => setNewRegistro({ ...newRegistro, cantidad: Number(e.target.value) })}
                             required
-                            min="1"
+                            min="0.1"
+                            step={selectedExercise?.unidad === 'km' ? "0.1" : "1"}
                         />
                     </div>
 

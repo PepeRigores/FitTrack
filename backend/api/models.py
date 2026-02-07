@@ -21,11 +21,16 @@ class Ejercicio(models.Model):
         ('Flexibilidad', 'Flexibilidad'),
     ]
 
+    UNIDAD_CHOICES = [
+        ('reps', 'Repeticiones'),
+        ('minutos', 'Minutos'),
+        ('km', 'Kilómetros'),
+    ]
+
     nombre = models.CharField(max_length=100)
     categoria = models.CharField(max_length=50, choices=CATEGORIA_CHOICES)
-    descripcion = models.TextField(blank=True, null=True)
     tipo = models.CharField(max_length=20, choices=TIPO_CHOICES)
-    unidad = models.CharField(max_length=20, help_text="reps, minutos, km, kcal")
+    unidad = models.CharField(max_length=20, choices=UNIDAD_CHOICES, default='reps')
     imagen = models.CharField(max_length=255, blank=True, null=True, help_text="Nombre del archivo en /exercises/")
     video = models.CharField(max_length=255, blank=True, null=True, help_text="Nombre del archivo en /exercises/")
 
@@ -45,11 +50,10 @@ class Entrenamiento(models.Model):
 class RegistroEjercicio(models.Model):
     entrenamiento = models.ForeignKey(Entrenamiento, on_delete=models.CASCADE, related_name='registros')
     ejercicio = models.ForeignKey(Ejercicio, on_delete=models.CASCADE)
-    series = models.PositiveIntegerField()
-    repeticiones = models.PositiveIntegerField()
-    peso = models.FloatField(help_text="kg")
-    duracion = models.PositiveIntegerField(help_text="minutos", blank=True, null=True)
+    series = models.PositiveIntegerField(default=1)
+    cantidad = models.FloatField(help_text="Repeticiones, minutos o km")
+    peso = models.FloatField(help_text="kg", default=0)
     descanso = models.PositiveIntegerField(help_text="segundos", blank=True, null=True)
 
     def __str__(self):
-        return f"{self.ejercicio.nombre} - {self.series}x{self.repeticiones}"
+        return f"{self.ejercicio.nombre} - {self.series}x{self.cantidad} ({self.ejercicio.unidad})"

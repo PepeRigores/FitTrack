@@ -25,6 +25,7 @@ class EjercicioSerializer(serializers.ModelSerializer):
 class RegistroEjercicioSerializer(serializers.ModelSerializer):
     ejercicio_nombre = serializers.ReadOnlyField(source='ejercicio.nombre')
     ejercicio_imagen = serializers.ReadOnlyField(source='ejercicio.imagen')
+    ejercicio_unidad = serializers.ReadOnlyField(source='ejercicio.unidad')
 
     class Meta:
         model = RegistroEjercicio
