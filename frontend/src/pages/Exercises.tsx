@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Plus, Edit2, Trash2, Search } from 'lucide-react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { Plus, Edit2, Trash2, Search, CheckCircle } from 'lucide-react';
 import Layout from '../components/Layout';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
@@ -9,6 +10,14 @@ import { getEjercicios, createEjercicio, updateEjercicio, deleteEjercicio } from
 import type { Ejercicio } from '../types';
 
 const Exercises: React.FC = () => {
+    const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
+    const selectMode = searchParams.get('selectMode') === 'true';
+    const workoutId = searchParams.get('workoutId');
+    const existingExercisesParam = searchParams.get('existingExercises');
+    const existingExercises = existingExercisesParam
+        ? new Set(existingExercisesParam.split(',').map(Number))
+        : new Set<number>();
     const [exercises, setExercises] = useState<Ejercicio[]>([]);
     const [filteredExercises, setFilteredExercises] = useState<Ejercicio[]>([]);
     const [searchTerm, setSearchTerm] = useState('');
@@ -16,6 +25,7 @@ const Exercises: React.FC = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [currentExercise, setCurrentExercise] = useState<Partial<Ejercicio>>({});
     const [isSaving, setIsSaving] = useState(false);
+    const [selectingId, setSelectingId] = useState<number | null>(null);
 
     useEffect(() => {
         fetchExercises();
@@ -83,10 +93,15 @@ const Exercises: React.FC = () => {
         setIsModalOpen(true);
     };
 
+    const handleSelect = (exercise: Ejercicio) => {
+        setSelectingId(exercise.id);
+        navigate(`/entrenamientos/${workoutId}?newExerciseId=${exercise.id}`);
+    };
+
     return (
         <Layout>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-                <h1 style={{ fontSize: '2rem', fontWeight: 700 }}>Ejercicios</h1>
+                <h1 style={{ fontSize: '2rem', fontWeight: 700 }}>{selectMode ? 'Selecciona un Ejercicio' : 'Ejercicios'}</h1>
                 <Button onClick={() => openModal()} icon={<Plus size={20} />}>
                     Crear ejercicio
                 </Button>
@@ -102,7 +117,6 @@ const Exercises: React.FC = () => {
                         style={{ paddingLeft: '3rem' }}
                     />
                 </div>
-                
             </div>
 
             {isLoading ? (
@@ -127,12 +141,39 @@ const Exercises: React.FC = () => {
                             </div>
 
                             <div style={{ display: 'flex', gap: '1rem', marginTop: 'auto' }}>
-                                <Button variant="secondary" size="sm" onClick={() => openModal(exercise)} icon={<Edit2 size={16} />}>
-                                    Editar
-                                </Button>
-                                <Button variant="danger" size="sm" onClick={() => handleDelete(exercise.id)} icon={<Trash2 size={16} />}>
-                                    Eliminar
-                                </Button>
+                                {selectMode ? (
+                                    existingExercises.has(exercise.id) ? (
+                                        <Button
+                                            variant="secondary"
+                                            size="sm"
+                                            disabled
+                                            icon={<CheckCircle size={16} />}
+                                            style={{ width: '100%', opacity: 0.7, cursor: 'not-allowed' }}
+                                        >
+                                            Añadido
+                                        </Button>
+                                    ) : (
+                                        <Button
+                                            variant="primary"
+                                            size="sm"
+                                            onClick={() => handleSelect(exercise)}
+                                            icon={<CheckCircle size={16} />}
+                                            disabled={selectingId === exercise.id}
+                                            style={{ width: '100%', backgroundColor: 'var(--success)', borderColor: 'var(--success)' }}
+                                        >
+                                            {selectingId === exercise.id ? 'Seleccionando...' : 'Seleccionar'}
+                                        </Button>
+                                    )
+                                ) : (
+                                    <>
+                                        <Button variant="secondary" size="sm" onClick={() => openModal(exercise)} icon={<Edit2 size={16} />}>
+                                            Editar
+                                        </Button>
+                                        <Button variant="danger" size="sm" onClick={() => handleDelete(exercise.id)} icon={<Trash2 size={16} />}>
+                                            Eliminar
+                                        </Button>
+                                    </>
+                                )}
                             </div>
                         </Card>
                     ))}

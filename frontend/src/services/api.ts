@@ -60,6 +60,11 @@ export const getEjercicios = async () => {
     return response.data;
 };
 
+export const getEjercicioById = async (id: number) => {
+    const response = await api.get<Ejercicio>(`ejercicios/${id}/`);
+    return response.data;
+};
+
 export const createEjercicio = async (data: Omit<Ejercicio, 'id'>) => {
     const response = await api.post<Ejercicio>('ejercicios/', data);
     return response.data;

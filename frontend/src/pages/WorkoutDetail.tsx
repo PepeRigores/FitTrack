@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { ArrowLeft, Plus, Trash2 } from 'lucide-react';
 import Layout from '../components/Layout';
 import Card from '../components/ui/Card';
@@ -8,7 +8,7 @@ import Input from '../components/ui/Input';
 import Modal from '../components/ui/Modal';
 import {
     getEntrenamientoById,
-    getEjercicios,
+    getEjercicioById,
     createRegistro,
     deleteRegistro
 } from '../services/api';
@@ -17,8 +17,9 @@ import type { Entrenamiento, Ejercicio, RegistroEjercicio } from '../types';
 const WorkoutDetail: React.FC = () => {
     const { id } = useParams<{ id: string }>();
     const navigate = useNavigate();
+    const [searchParams, setSearchParams] = useSearchParams();
     const [workout, setWorkout] = useState<Entrenamiento | null>(null);
-    const [exercises, setExercises] = useState<Ejercicio[]>([]);
+    const [selectedExercise, setSelectedExercise] = useState<Ejercicio | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [newRegistro, setNewRegistro] = useState<Partial<RegistroEjercicio>>({
@@ -34,14 +35,28 @@ const WorkoutDetail: React.FC = () => {
         }
     }, [id]);
 
+    useEffect(() => {
+        const newExerciseId = searchParams.get('newExerciseId');
+        if (newExerciseId) {
+            fetchExerciseDetails(Number(newExerciseId));
+        }
+    }, [searchParams]);
+
+    const fetchExerciseDetails = async (exerciseId: number) => {
+        try {
+            const exercise = await getEjercicioById(exerciseId);
+            setSelectedExercise(exercise);
+            setNewRegistro(prev => ({ ...prev, ejercicio: exercise.id }));
+            setIsModalOpen(true);
+        } catch (error) {
+            console.error('Error fetching exercise details:', error);
+        }
+    };
+
     const fetchData = async () => {
         try {
-            const [workoutData, exercisesData] = await Promise.all([
-                getEntrenamientoById(Number(id)),
-                getEjercicios()
-            ]);
+            const workoutData = await getEntrenamientoById(Number(id));
             setWorkout(workoutData);
-            setExercises(exercisesData);
         } catch (error) {
             console.error('Error fetching data:', error);
         } finally {
@@ -66,6 +81,10 @@ const WorkoutDetail: React.FC = () => {
                 peso: 0,
                 descanso: 60
             });
+            setSelectedExercise(null);
+            // Remove param from URL
+            searchParams.delete('newExerciseId');
+            setSearchParams(searchParams);
         } catch (error) {
             console.error('Error adding exercise:', error);
         }
@@ -97,7 +116,13 @@ const WorkoutDetail: React.FC = () => {
                             {workout.lugar}
                         </p>
                     </div>
-                    <Button onClick={() => setIsModalOpen(true)} icon={<Plus size={20} />}>
+                    <Button
+                        onClick={() => {
+                            const existingIds = workout.registros.map(r => r.ejercicio).join(',');
+                            navigate(`/ejercicios?selectMode=true&workoutId=${id}&existingExercises=${existingIds}`);
+                        }}
+                        icon={<Plus size={20} />}
+                    >
                         Añadir Ejercicio
                     </Button>
                 </div>
@@ -136,17 +161,17 @@ const WorkoutDetail: React.FC = () => {
                             </Button>
                         </div>
                     </Card>
-                    
+
                 ))}
                 <div>
-                <Button
-                    variant="ghost"
-                    onClick={() => navigate('/entrenamientos')}
-                    style={{ marginBottom: '1rem', padding: '2px 10px 4px 5px', backgroundColor: 'var(--danger)', borderRadius: '6px' }}
-                    icon={<ArrowLeft size={20} />}
-                >
-                    <span>Volver a entrenamientos</span>
-                </Button>
+                    <Button
+                        variant="ghost"
+                        onClick={() => navigate('/entrenamientos')}
+                        style={{ marginBottom: '1rem', padding: '2px 10px 4px 5px', backgroundColor: 'var(--danger)', borderRadius: '6px' }}
+                        icon={<ArrowLeft size={20} />}
+                    >
+                        <span>Volver a entrenamientos</span>
+                    </Button>
                 </div>
 
                 {workout.registros.length === 0 && (
@@ -158,7 +183,14 @@ const WorkoutDetail: React.FC = () => {
                         borderRadius: 'var(--radius-lg)'
                     }}>
                         <p>No hay ejercicios añadidos aún.</p>
-                        <Button variant="ghost" onClick={() => setIsModalOpen(true)} style={{ marginTop: '1rem' }}>
+                        <Button
+                            variant="ghost"
+                            onClick={() => {
+                                const existingIds = workout.registros.map(r => r.ejercicio).join(',');
+                                navigate(`/ejercicios?selectMode=true&workoutId=${id}&existingExercises=${existingIds}`);
+                            }}
+                            style={{ marginTop: '1rem' }}
+                        >
                             Añade tu primer ejercicio
                         </Button>
                     </div>
@@ -175,26 +207,15 @@ const WorkoutDetail: React.FC = () => {
                         <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: 500, color: 'var(--text-secondary)' }}>
                             Ejercicio
                         </label>
-                        <select
-                            value={newRegistro.ejercicio || ''}
-                            onChange={(e) => setNewRegistro({ ...newRegistro, ejercicio: Number(e.target.value) })}
-                            required
-                            style={{
-                                width: '100%',
-                                padding: '0.75rem 1rem',
-                                borderRadius: 'var(--radius-md)',
-                                border: '1px solid var(--border)',
-                                backgroundColor: 'var(--surface)',
-                                color: 'var(--text)',
-                                fontSize: '1rem',
-                                outline: 'none'
-                            }}
-                        >
-                            <option value="">Selecciona un ejercicio...</option>
-                            {exercises.map(ex => (
-                                <option key={ex.id} value={ex.id}>{ex.nombre}</option>
-                            ))}
-                        </select>
+                        <div style={{
+                            padding: '0.75rem 1rem',
+                            borderRadius: 'var(--radius-md)',
+                            border: '1px solid var(--border)',
+                            backgroundColor: 'var(--surface)',
+                            color: 'var(--text)',
+                        }}>
+                            {selectedExercise ? selectedExercise.nombre : 'No exercise selected'}
+                        </div>
                     </div>
 
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
