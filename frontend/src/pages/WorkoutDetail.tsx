@@ -134,34 +134,49 @@ const WorkoutDetail: React.FC = () => {
             <div style={{ display: 'grid', gap: '1.5rem' }}>
                 {workout.registros.map((registro) => (
                     <Card key={registro.id}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
-                            <div>
-                                <h3 style={{ fontSize: '1.25rem', fontWeight: 600, marginBottom: '0.5rem' }}>
-                                    {registro.ejercicio_nombre}
-                                </h3>
-                                <div style={{ display: 'flex', gap: '2rem', color: 'var(--text-secondary)' }}>
-                                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                                        <span style={{ fontSize: '0.875rem' }}>Series</span>
-                                        <span style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--text)' }}>{registro.series}</span>
+                        <div className="exercise-card-content">
+                            {registro.ejercicio_imagen && (
+                                <div className="exercise-image-container">
+                                    <img
+                                        src={`/exercises/${registro.ejercicio_imagen}`}
+                                        alt={registro.ejercicio_nombre}
+                                        onError={(e) => {
+                                            (e.target as HTMLImageElement).parentElement!.style.display = 'none';
+                                        }}
+                                    />
+                                </div>
+                            )}
+                            <div className="exercise-info-container">
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
+                                    <div>
+                                        <h3 style={{ fontSize: '1.25rem', fontWeight: 600, marginBottom: '0.5rem' }}>
+                                            {registro.ejercicio_nombre}
+                                        </h3>
+                                        <div style={{ display: 'flex', gap: '2rem', color: 'var(--text-secondary)' }}>
+                                            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                                <span style={{ fontSize: '0.875rem' }}>Series</span>
+                                                <span style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--text)' }}>{registro.series}</span>
+                                            </div>
+                                            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                                <span style={{ fontSize: '0.875rem' }}>Repeticiones</span>
+                                                <span style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--text)' }}>{registro.repeticiones}</span>
+                                            </div>
+                                            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                                <span style={{ fontSize: '0.875rem' }}>Peso</span>
+                                                <span style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--text)' }}>{registro.peso}kg</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                                        <span style={{ fontSize: '0.875rem' }}>Repeticiones</span>
-                                        <span style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--text)' }}>{registro.repeticiones}</span>
-                                    </div>
-                                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                                        <span style={{ fontSize: '0.875rem' }}>Peso</span>
-                                        <span style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--text)' }}>{registro.peso}kg</span>
-                                    </div>
+                                    <Button
+                                        variant="ghost"
+                                        size="sm"
+                                        onClick={() => handleDeleteRegistro(registro.id)}
+                                        style={{ color: 'var(--danger)' }}
+                                    >
+                                        <Trash2 size={20} />
+                                    </Button>
                                 </div>
                             </div>
-                            <Button
-                                variant="ghost"
-                                size="sm"
-                                onClick={() => handleDeleteRegistro(registro.id)}
-                                style={{ color: 'var(--danger)' }}
-                            >
-                                <Trash2 size={20} />
-                            </Button>
                         </div>
                     </Card>
 

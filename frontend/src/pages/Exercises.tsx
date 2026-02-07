@@ -88,7 +88,9 @@ const Exercises: React.FC = () => {
             categoria: 'Pecho',
             tipo: 'Fuerza',
             unidad: 'reps',
-            descripcion: ''
+            descripcion: '',
+            imagen: '',
+            video: ''
         });
         setIsModalOpen(true);
     };
@@ -125,18 +127,41 @@ const Exercises: React.FC = () => {
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1.5rem' }}>
                     {filteredExercises.map((exercise) => (
                         <Card key={exercise.id} title={exercise.nombre}>
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1.5rem' }}>
-                                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                    <span style={{ color: 'var(--text-secondary)' }}>Categoría:</span>
-                                    <span style={{ fontWeight: 500 }}>{exercise.categoria}</span>
-                                </div>
-                                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                    <span style={{ color: 'var(--text-secondary)' }}>Tipo:</span>
-                                    <span style={{ fontWeight: 500 }}>{exercise.tipo}</span>
-                                </div>
-                                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                    <span style={{ color: 'var(--text-secondary)' }}>Unidad:</span>
-                                    <span style={{ fontWeight: 500 }}>{exercise.unidad}</span>
+                            <div className="exercise-card-content">
+                                {exercise.imagen && (
+                                    <div className="exercise-image-container">
+                                        <img
+                                            src={`/exercises/${exercise.imagen}`}
+                                            alt={exercise.nombre}
+                                            onError={(e) => {
+                                                console.error('Error loading image:', `/exercises/${exercise.imagen}`);
+                                                (e.target as HTMLImageElement).parentElement!.style.display = 'none';
+                                            }}
+                                        />
+                                    </div>
+                                )}
+
+                                <div className="exercise-info-container">
+                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1.5rem' }}>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                            <span style={{ color: 'var(--text-secondary)' }}>Categoría:</span>
+                                            <span style={{ fontWeight: 500 }}>{exercise.categoria}</span>
+                                        </div>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                            <span style={{ color: 'var(--text-secondary)' }}>Tipo:</span>
+                                            <span style={{ fontWeight: 500 }}>{exercise.tipo}</span>
+                                        </div>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                            <span style={{ color: 'var(--text-secondary)' }}>Unidad:</span>
+                                            <span style={{ fontWeight: 500 }}>{exercise.unidad}</span>
+                                        </div>
+
+                                        {exercise.video && !exercise.imagen && (
+                                            <div style={{ marginTop: '0.5rem', color: 'var(--primary)', fontSize: '0.875rem', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                                                <span>▶ Video disponible</span>
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
 
@@ -268,6 +293,31 @@ const Exercises: React.FC = () => {
                                 fontFamily: 'inherit'
                             }}
                         />
+                    </div>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                        <div>
+                            <Input
+                                label="Nombre imagen (ej. press.jpg)"
+                                value={currentExercise.imagen || ''}
+                                onChange={(e) => setCurrentExercise({ ...currentExercise, imagen: e.target.value })}
+                                placeholder="Escribe el nombre del archivo"
+                            />
+                            <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: '-0.75rem', marginBottom: '1rem' }}>
+                                Pon el archivo en <code>public/exercises/</code>
+                            </p>
+                        </div>
+                        <div>
+                            <Input
+                                label="Nombre video (ej. press.mp4)"
+                                value={currentExercise.video || ''}
+                                onChange={(e) => setCurrentExercise({ ...currentExercise, video: e.target.value })}
+                                placeholder="Escribe el nombre del archivo"
+                            />
+                            <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: '-0.75rem', marginBottom: '1rem' }}>
+                                Pon el archivo en <code>public/exercises/</code>
+                            </p>
+                        </div>
                     </div>
 
                     <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '1rem' }}>

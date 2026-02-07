@@ -26,6 +26,8 @@ class Ejercicio(models.Model):
     descripcion = models.TextField(blank=True, null=True)
     tipo = models.CharField(max_length=20, choices=TIPO_CHOICES)
     unidad = models.CharField(max_length=20, help_text="reps, minutos, km, kcal")
+    imagen = models.CharField(max_length=255, blank=True, null=True, help_text="Nombre del archivo en /exercises/")
+    video = models.CharField(max_length=255, blank=True, null=True, help_text="Nombre del archivo en /exercises/")
 
     def __str__(self):
         return self.nombre

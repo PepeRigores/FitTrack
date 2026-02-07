@@ -11,6 +11,8 @@ export interface Ejercicio {
     descripcion?: string;
     tipo: string;
     unidad: string;
+    imagen?: string;
+    video?: string;
 }
 
 export interface RegistroEjercicio {
@@ -18,6 +20,7 @@ export interface RegistroEjercicio {
     entrenamiento: number;
     ejercicio: number;
     ejercicio_nombre?: string;
+    ejercicio_imagen?: string;
     series: number;
     repeticiones: number;
     peso: number;
