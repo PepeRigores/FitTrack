@@ -100,7 +100,7 @@ const Exercises: React.FC = () => {
 
     return (
         <Layout>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem', flexWrap: 'wrap', gap: '1rem' }}>
                 <h1 style={{ fontSize: '2rem', fontWeight: 700 }}>{selectMode ? 'Selecciona un Ejercicio' : 'Ejercicios'}</h1>
                 <Button onClick={() => openModal()} icon={<Plus size={20} />}>
                     Crear ejercicio

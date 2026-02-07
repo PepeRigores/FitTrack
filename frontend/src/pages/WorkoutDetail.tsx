@@ -107,10 +107,13 @@ const WorkoutDetail: React.FC = () => {
     return (
         <Layout>
             <div style={{ marginBottom: '2rem' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
                     <div>
-                        <h1 style={{ fontSize: '2rem', fontWeight: 700, marginBottom: '0.5rem' }}>
+                        <h1 style={{ fontSize: '2rem', fontWeight: 700, marginBottom: '0.5rem', display: 'flex', alignItems: 'baseline', gap: '10px' }}>
                             {new Date(workout.fecha).toLocaleDateString()}
+                            <time style={{ fontSize: '1.7rem', fontWeight: 600, color: '#22c55e' }}>
+                                {new Date(workout.fecha).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                            </time>
                         </h1>
                         <p style={{ fontSize: '1.125rem' }}>
                             {workout.lugar}

@@ -70,7 +70,7 @@ const Workouts: React.FC = () => {
 
     return (
         <Layout>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem', flexWrap: 'wrap', gap: '1rem' }}>
                 <h1 style={{ fontSize: '2rem', fontWeight: 700 }}>Entrenamientos</h1>
                 <Button onClick={openModal} icon={<Plus size={20} />}>
                     Nuevo Entrenamiento
@@ -93,6 +93,9 @@ const Workouts: React.FC = () => {
                                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-secondary)' }}>
                                             <Calendar size={16} />
                                             <span>{new Date(workout.fecha).toLocaleDateString()}</span>
+                                            <time style={{ color: '#22c55e', fontWeight: 600 }}>
+                                                {new Date(workout.fecha).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                            </time>
                                         </div>
                                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 500 }}>
                                             <MapPin size={16} color="var(--primary)" />

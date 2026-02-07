@@ -2,11 +2,18 @@
 
 Aplicación web Full Stack para el registro, gestión y seguimiento de entrenamientos físicos, desarrollada como proyecto del ciclo formativo de **Desarrollo de Aplicaciones Web (DAW)**.
 
-El objetivo principal del proyecto es ofrecer una herramienta sencilla, privada y estructurada que permita a los usuarios registrar sus rutinas de entrenamiento y analizar su progreso físico mediante estadísticas y visualizaciones gráficas.
+El objetivo principal del proyecto es ofrecer una herramienta sencilla, privada y estructurada que permita a los usuarios registrar sus rutinas de entrenamiento y motivarse con su progreso mediante estadísticas y visualizaciones gráficas.
+
+---
+## 📌 Enlace:
+
+Para poder probar la aplicación mientras está en desarrollo, se ha desplegado en servicios gratuitos de la nube. Puede tardar unos minutos en cargar la primera vez. Gracias por la paciencia:
+
+https://fitness-tracker-khaki-eight.vercel.app/
 
 ---
 
-## 📌 Características principales
+## 📚 Características principales
 
 - Registro y autenticación de usuarios mediante **JWT**
 - Gestión completa de entrenamientos y ejercicios (CRUD)
