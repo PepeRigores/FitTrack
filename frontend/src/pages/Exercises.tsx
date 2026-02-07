@@ -127,42 +127,39 @@ const Exercises: React.FC = () => {
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1.5rem' }}>
                     {filteredExercises.map((exercise) => (
                         <Card key={exercise.id} title={exercise.nombre}>
-                            <div className="exercise-card-content">
-                                {exercise.imagen && (
-                                    <div className="exercise-image-container">
-                                        <img
-                                            src={`/exercises/${exercise.imagen}`}
-                                            alt={exercise.nombre}
-                                            onError={(e) => {
-                                                console.error('Error loading image:', `/exercises/${exercise.imagen}`);
-                                                (e.target as HTMLImageElement).parentElement!.style.display = 'none';
-                                            }}
-                                        />
+                            {exercise.imagen && (
+                                <div style={{ marginBottom: '1rem', borderRadius: 'var(--radius-md)', overflow: 'hidden', border: '1px solid var(--border)', backgroundColor: 'rgba(0,0,0,0.03)' }}>
+                                    <img
+                                        src={`/exercises/${exercise.imagen}`}
+                                        alt={exercise.nombre}
+                                        style={{ width: '100%', height: 'auto', maxHeight: '250px', objectFit: 'contain', display: 'block' }}
+                                        onError={(e) => {
+                                            console.error('Error loading image:', `/exercises/${exercise.imagen}`);
+                                            (e.target as HTMLImageElement).parentElement!.style.display = 'none';
+                                        }}
+                                    />
+                                </div>
+                            )}
+
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1.5rem' }}>
+                                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                    <span style={{ color: 'var(--text-secondary)' }}>Categoría:</span>
+                                    <span style={{ fontWeight: 500 }}>{exercise.categoria}</span>
+                                </div>
+                                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                    <span style={{ color: 'var(--text-secondary)' }}>Tipo:</span>
+                                    <span style={{ fontWeight: 500 }}>{exercise.tipo}</span>
+                                </div>
+                                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                    <span style={{ color: 'var(--text-secondary)' }}>Unidad:</span>
+                                    <span style={{ fontWeight: 500 }}>{exercise.unidad}</span>
+                                </div>
+
+                                {exercise.video && !exercise.imagen && (
+                                    <div style={{ marginTop: '0.5rem', color: 'var(--primary)', fontSize: '0.875rem', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                                        <span>▶ Video disponible</span>
                                     </div>
                                 )}
-
-                                <div className="exercise-info-container">
-                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1.5rem' }}>
-                                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                            <span style={{ color: 'var(--text-secondary)' }}>Categoría:</span>
-                                            <span style={{ fontWeight: 500 }}>{exercise.categoria}</span>
-                                        </div>
-                                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                            <span style={{ color: 'var(--text-secondary)' }}>Tipo:</span>
-                                            <span style={{ fontWeight: 500 }}>{exercise.tipo}</span>
-                                        </div>
-                                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                            <span style={{ color: 'var(--text-secondary)' }}>Unidad:</span>
-                                            <span style={{ fontWeight: 500 }}>{exercise.unidad}</span>
-                                        </div>
-
-                                        {exercise.video && !exercise.imagen && (
-                                            <div style={{ marginTop: '0.5rem', color: 'var(--primary)', fontSize: '0.875rem', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
-                                                <span>▶ Video disponible</span>
-                                            </div>
-                                        )}
-                                    </div>
-                                </div>
                             </div>
 
                             <div style={{ display: 'flex', gap: '1rem', marginTop: 'auto' }}>
