@@ -46,7 +46,8 @@ const WorkoutDetail: React.FC = () => {
         try {
             const exercise = await getEjercicioById(exerciseId);
             setSelectedExercise(exercise);
-            setNewRegistro(prev => ({ ...prev, ejercicio: exercise.id }));
+            const defaultSeries = (exercise.unidad === 'minutos' || exercise.unidad === 'km') ? 1 : 3;
+            setNewRegistro(prev => ({ ...prev, ejercicio: exercise.id, series: defaultSeries }));
             setIsModalOpen(true);
         } catch (error) {
             console.error('Error fetching exercise details:', error);
@@ -255,7 +256,7 @@ const WorkoutDetail: React.FC = () => {
                             value={newRegistro.cantidad}
                             onChange={(e) => setNewRegistro({ ...newRegistro, cantidad: Number(e.target.value) })}
                             required
-                            min="0.1"
+                            min={selectedExercise?.unidad === 'km' ? "0.1" : "1"}
                             step={selectedExercise?.unidad === 'km' ? "0.1" : "1"}
                         />
                     </div>
