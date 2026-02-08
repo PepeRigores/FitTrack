@@ -1,4 +1,4 @@
-# 🏋️ FitTracK
+# 🏋️ Fitness TracKer
 
 Aplicación web Full Stack para el registro, gestión y seguimiento de entrenamientos físicos, desarrollada como proyecto del ciclo formativo de **Desarrollo de Aplicaciones Web (DAW)**.
 
