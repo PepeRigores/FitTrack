@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://fitness-tracker-p7dp.onrender.com/api';
+const API_URL = 'https://rigores.pythonanywhere.com/api/';
 
 const api = axios.create({
     baseURL: API_URL,
