@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const defaultUrl = import.meta.env.DEV
     ? 'http://127.0.0.1:8000/api/'
-    : 'https://rigores.pythonanywhere.com/api/';
+    : 'https://chemical-picked-benz-festivals.trycloudflare.com/';
 
 const rawApiUrl = import.meta.env.VITE_API_URL || defaultUrl;
 const API_URL = rawApiUrl.endsWith('/') ? rawApiUrl : `${rawApiUrl}/`;
