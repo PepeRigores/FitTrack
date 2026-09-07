@@ -15,6 +15,17 @@ from datetime import timedelta
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Cargar variables de entorno desde .env si existe
+env_file = BASE_DIR / '.env'
+if env_file.exists():
+    with open(env_file, 'r', encoding='utf-8') as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith('#') and '=' in line:
+                key, val = line.split('=', 1)
+                os.environ.setdefault(key.strip(), val.strip().strip("'\""))
+
+
 
 # ---------------------------------------------------
 # SECURITY
@@ -24,11 +35,14 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "unsafe-secret-for-dev")
 
 DEBUG = os.environ.get("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = [
-    "localhost",
-    "127.0.0.1",
-    ".pythonanywhere.com"
-]
+if DEBUG:
+    ALLOWED_HOSTS = ["*"]
+else:
+    ALLOWED_HOSTS = [
+        "localhost",
+        "127.0.0.1",
+        ".pythonanywhere.com"
+    ]
 
 
 # ---------------------------------------------------
@@ -103,11 +117,37 @@ TEMPLATES = [
 # DATABASE
 # ---------------------------------------------------
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get("DATABASE_URL", f"sqlite:///{BASE_DIR}/db.sqlite3")
-    )
-}
+DATABASE_URL = os.environ.get("DATABASE_URL")
+
+if DATABASE_URL:
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=DATABASE_URL,
+            conn_max_age=600,
+        )
+    }
+    if DATABASES['default'].get('ENGINE') == 'django.db.backends.mysql':
+        DATABASES['default'].setdefault('OPTIONS', {})
+        DATABASES['default']['OPTIONS'].update({
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES',default_storage_engine=INNODB",
+            'charset': 'utf8mb4',
+        })
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': os.environ.get('DB_NAME', 'fittrack'),
+            'USER': os.environ.get('DB_USER', 'root'),
+            'PASSWORD': os.environ.get('DB_PASSWORD', ''),
+            'HOST': os.environ.get('DB_HOST', '127.0.0.1'),
+            'PORT': os.environ.get('DB_PORT', '3306'),
+            'OPTIONS': {
+                'init_command': "SET sql_mode='STRICT_TRANS_TABLES',default_storage_engine=INNODB",
+                'charset': 'utf8mb4',
+            },
+        }
+    }
+
 
 
 # ---------------------------------------------------
@@ -188,6 +228,13 @@ SIMPLE_JWT = {
 # ---------------------------------------------------
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.trycloudflare.com",
+    "https://fitness-tracker-khaki-eight.vercel.app",
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]
 
 
 # ---------------------------------------------------

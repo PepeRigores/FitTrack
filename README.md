@@ -31,7 +31,7 @@ https://fitness-tracker-khaki-eight.vercel.app/
 - Django
 - Django REST Framework
 - Autenticación JWT (`djangorestframework-simplejwt`)
-- Base de datos: SQLite (entorno de desarrollo)
+- Base de datos: MySQL / MariaDB (PyMySQL)
 
 ### Frontend
 - React
@@ -104,14 +104,25 @@ source venv/bin/activate   # Linux / macOS
 pip install -r requirements.txt
 ```
 
-4. Aplica migraciones:
-
+4. Configura las variables de entorno (opcional si usas los valores por defecto de MySQL en local):
+Copia `.env.example` a `.env` y ajusta las credenciales de tu base de datos MySQL:
 ```bash
-python3 manage.py makemigrations
-python3 manage.py migrate
+cp .env.example .env
 ```
 
-5. Ejecuta el servidor:
+Asegúrate de haber creado la base de datos en MySQL:
+```sql
+CREATE DATABASE fittrack CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
+
+5. Aplica migraciones y carga los datos iniciales:
+
+```bash
+python3 manage.py migrate
+python3 manage.py loaddata data_backup.json  # Restaura los 20 ejercicios y datos de prueba
+```
+
+6. Ejecuta el servidor:
 
 ```bash
 python3 manage.py runserver

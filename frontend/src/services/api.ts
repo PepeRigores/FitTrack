@@ -1,6 +1,11 @@
 import axios from 'axios';
 
-const API_URL = 'https://rigores.pythonanywhere.com/api/';
+const defaultUrl = import.meta.env.DEV
+    ? 'http://127.0.0.1:8000/api/'
+    : 'https://rigores.pythonanywhere.com/api/';
+
+const rawApiUrl = import.meta.env.VITE_API_URL || defaultUrl;
+const API_URL = rawApiUrl.endsWith('/') ? rawApiUrl : `${rawApiUrl}/`;
 
 const api = axios.create({
     baseURL: API_URL,

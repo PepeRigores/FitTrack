@@ -77,7 +77,7 @@ Django REST Framework API with JWT authentication.
 **Key configuration:**
 - JWT tokens: 60-minute access, 1-day refresh (`settings.py` SIMPLE_JWT)
 - CORS: Currently allows all origins (development mode)
-- Database: Configured via `DATABASE_URL` env var (uses dj-database-url)
+- Database: Configured for MySQL via individual env vars (`DB_NAME`, `DB_USER`, `DB_PASSWORD`, `DB_HOST`, `DB_PORT`) or `DATABASE_URL` (uses PyMySQL / dj-database-url)
 
 ### Frontend (`frontend/`)
 
@@ -101,10 +101,12 @@ React 19 + TypeScript + Vite SPA.
 ### Backend
 - `SECRET_KEY` - Django secret key
 - `DEBUG` - Set to "True" for debug mode
-- `DATABASE_URL` - PostgreSQL connection string for production
+- `DB_NAME`, `DB_USER`, `DB_PASSWORD`, `DB_HOST`, `DB_PORT` - MySQL database credentials
+- `DATABASE_URL` - Optional MySQL connection string (e.g., `mysql://user:pass@host:3306/dbname`)
+
 
 ### Frontend
-- API URL is hardcoded in `src/services/api.ts` - change for local development if needed
+- `VITE_API_URL` - Backend API URL (defaults to `http://127.0.0.1:8000/api/` in `src/services/api.ts`, can be configured in `.env.local`)
 
 ## Domain Language
 

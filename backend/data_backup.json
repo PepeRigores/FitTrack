@@ -1,0 +1,563 @@
+[
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$lpuvSAahO7I3nbDTTnIh1Y$mvdHQi0M0K0EH0/PzQ3AZCkZhjGt+sq1ATHdLY8Px+E=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "javi",
+    "first_name": "",
+    "last_name": "",
+    "email": "javi@dosmares.es",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-12-16T21:11:58.505Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$4U2WCjE3fFkE6Hv0VJHwwU$OTkbB1gWqujejAnRm3kXNbKbN11XQrQwXkkt7nAbbgk=",
+    "last_login": "2026-03-13T22:18:12.406Z",
+    "is_superuser": true,
+    "username": "pepe",
+    "first_name": "",
+    "last_name": "",
+    "email": "pepe.rigores@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-12-16T22:09:41.559Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$XKpIjjieNqxNUeeL1F7NQ9$4ETXlkFUxA27efRMHcQpJp3Viqyzs1uNg0bd467rJwU=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "elena",
+    "first_name": "",
+    "last_name": "",
+    "email": "elenatorarico@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-01-17T19:06:23.188Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "api.ejercicio",
+  "pk": 2,
+  "fields": {
+    "nombre": "Press banca barra",
+    "categoria": "Pecho",
+    "tipo": "Fuerza",
+    "unidad": "reps",
+    "imagen": "Press-Banca-Barra.gif",
+    "video": null
+  }
+},
+{
+  "model": "api.ejercicio",
+  "pk": 3,
+  "fields": {
+    "nombre": "Press militar barra",
+    "categoria": "Hombros",
+    "tipo": "Fuerza",
+    "unidad": "reps",
+    "imagen": "Press-Militar-Barra.gif",
+    "video": null
+  }
+},
+{
+  "model": "api.ejercicio",
+  "pk": 4,
+  "fields": {
+    "nombre": "Remo invertido",
+    "categoria": "Espalda",
+    "tipo": "Fuerza",
+    "unidad": "reps",
+    "imagen": "Remo-Invertido.gif",
+    "video": null
+  }
+},
+{
+  "model": "api.ejercicio",
+  "pk": 5,
+  "fields": {
+    "nombre": "Curl bíceps barra",
+    "categoria": "Brazos",
+    "tipo": "Fuerza",
+    "unidad": "reps",
+    "imagen": "Curl-Biceps-Barra.gif",
+    "video": null
+  }
+},
+{
+  "model": "api.ejercicio",
+  "pk": 6,
+  "fields": {
+    "nombre": "Extensión tríceps mancuerna",
+    "categoria": "Brazos",
+    "tipo": "Fuerza",
+    "unidad": "reps",
+    "imagen": "Extension-Triceps-Mancuerna.gif",
+    "video": null
+  }
+},
+{
+  "model": "api.ejercicio",
+  "pk": 7,
+  "fields": {
+    "nombre": "Caminar",
+    "categoria": "Cardio",
+    "tipo": "Cardio",
+    "unidad": "40 min",
+    "imagen": "Caminar.gif",
+    "video": null
+  }
+},
+{
+  "model": "api.ejercicio",
+  "pk": 8,
+  "fields": {
+    "nombre": "Plancha",
+    "categoria": "Core",
+    "tipo": "Fuerza",
+    "unidad": "min",
+    "imagen": "Plancha.gif",
+    "video": null
+  }
+},
+{
+  "model": "api.ejercicio",
+  "pk": 9,
+  "fields": {
+    "nombre": "Zancada mancuerna",
+    "categoria": "Piernas",
+    "tipo": "Fuerza",
+    "unidad": "reps",
+    "imagen": "Zancada-Mancuerna.webp",
+    "video": null
+  }
+},
+{
+  "model": "api.ejercicio",
+  "pk": 10,
+  "fields": {
+    "nombre": "Curl femoral",
+    "categoria": "Piernas",
+    "tipo": "Fuerza",
+    "unidad": "reps",
+    "imagen": "Curl-Femoral.gif",
+    "video": null
+  }
+},
+{
+  "model": "api.ejercicio",
+  "pk": 11,
+  "fields": {
+    "nombre": "Extension Cuadriceps",
+    "categoria": "Piernas",
+    "tipo": "Fuerza",
+    "unidad": "reps",
+    "imagen": "Extension-Cuadriceps.gif",
+    "video": null
+  }
+},
+{
+  "model": "api.ejercicio",
+  "pk": 12,
+  "fields": {
+    "nombre": "Prensa horizontal",
+    "categoria": "Piernas",
+    "tipo": "Fuerza",
+    "unidad": "reps",
+    "imagen": "Prensa-Horizontal.gif",
+    "video": null
+  }
+},
+{
+  "model": "api.ejercicio",
+  "pk": 13,
+  "fields": {
+    "nombre": "Sentadilla con peso",
+    "categoria": "Pecho",
+    "tipo": "Fuerza",
+    "unidad": "reps",
+    "imagen": "Sentadillas-Peso.gif",
+    "video": null
+  }
+},
+{
+  "model": "api.ejercicio",
+  "pk": 14,
+  "fields": {
+    "nombre": "Front Squat",
+    "categoria": "Piernas",
+    "tipo": "Fuerza",
+    "unidad": "reps",
+    "imagen": "Front-Squad.gif",
+    "video": null
+  }
+},
+{
+  "model": "api.ejercicio",
+  "pk": 15,
+  "fields": {
+    "nombre": "Press militar mancuernas",
+    "categoria": "Hombros",
+    "tipo": "Fuerza",
+    "unidad": "reps",
+    "imagen": "Press-Militar-Mancuernas.gif",
+    "video": ""
+  }
+},
+{
+  "model": "api.ejercicio",
+  "pk": 16,
+  "fields": {
+    "nombre": "Remo alto barra",
+    "categoria": "Espalda",
+    "tipo": "Fuerza",
+    "unidad": "reps",
+    "imagen": "Remo-Alto-Barra.gif",
+    "video": ""
+  }
+},
+{
+  "model": "api.ejercicio",
+  "pk": 17,
+  "fields": {
+    "nombre": "Espalda jalon al pecho",
+    "categoria": "Espalda",
+    "tipo": "Fuerza",
+    "unidad": "reps",
+    "imagen": "Espalda-Jalon-Pecho.gif",
+    "video": ""
+  }
+},
+{
+  "model": "api.ejercicio",
+  "pk": 18,
+  "fields": {
+    "nombre": "Curl bíceps alterno",
+    "categoria": "Brazos",
+    "tipo": "Fuerza",
+    "unidad": "reps",
+    "imagen": "Curl-Biceps-Alterno.gif",
+    "video": ""
+  }
+},
+{
+  "model": "api.ejercicio",
+  "pk": 19,
+  "fields": {
+    "nombre": "Sentadillas barra",
+    "categoria": "Piernas",
+    "tipo": "Fuerza",
+    "unidad": "reps",
+    "imagen": "Sentadillas-Barra.gif",
+    "video": ""
+  }
+},
+{
+  "model": "api.ejercicio",
+  "pk": 20,
+  "fields": {
+    "nombre": "Prensa inclinada",
+    "categoria": "Piernas",
+    "tipo": "Fuerza",
+    "unidad": "reps",
+    "imagen": "Prensa-Inclinada.gif",
+    "video": ""
+  }
+},
+{
+  "model": "api.ejercicio",
+  "pk": 21,
+  "fields": {
+    "nombre": "Press banca mancuernas",
+    "categoria": "Pecho",
+    "tipo": "Fuerza",
+    "unidad": "reps",
+    "imagen": "Press-Banca-Mancuernas.gif",
+    "video": ""
+  }
+},
+{
+  "model": "api.entrenamiento",
+  "pk": 1,
+  "fields": {
+    "usuario": [
+      "pepe"
+    ],
+    "fecha": "2026-01-17T18:57:00Z",
+    "lugar": "Gimnasio",
+    "notas": "Tren superior",
+    "created_at": "2026-01-17T17:58:17.030Z"
+  }
+},
+{
+  "model": "api.entrenamiento",
+  "pk": 3,
+  "fields": {
+    "usuario": [
+      "elena"
+    ],
+    "fecha": "2026-01-12T18:15:00Z",
+    "lugar": "Gimnasio",
+    "notas": "",
+    "created_at": "2026-01-17T19:10:29.190Z"
+  }
+},
+{
+  "model": "api.entrenamiento",
+  "pk": 4,
+  "fields": {
+    "usuario": [
+      "elena"
+    ],
+    "fecha": "2026-01-13T20:11:00Z",
+    "lugar": "Gimnasio",
+    "notas": "",
+    "created_at": "2026-01-17T19:12:09.060Z"
+  }
+},
+{
+  "model": "api.entrenamiento",
+  "pk": 5,
+  "fields": {
+    "usuario": [
+      "elena"
+    ],
+    "fecha": "2026-01-19T20:19:00Z",
+    "lugar": "Gimnasio",
+    "notas": "",
+    "created_at": "2026-01-17T19:19:14.114Z"
+  }
+},
+{
+  "model": "api.entrenamiento",
+  "pk": 6,
+  "fields": {
+    "usuario": [
+      "pepe"
+    ],
+    "fecha": "2026-01-19T19:30:00Z",
+    "lugar": "Gimnasio",
+    "notas": "Tren inferior",
+    "created_at": "2026-01-20T23:24:28.307Z"
+  }
+},
+{
+  "model": "api.entrenamiento",
+  "pk": 7,
+  "fields": {
+    "usuario": [
+      "pepe"
+    ],
+    "fecha": "2026-01-18T20:30:00Z",
+    "lugar": "Calle",
+    "notas": "",
+    "created_at": "2026-01-20T23:30:15.447Z"
+  }
+},
+{
+  "model": "api.registroejercicio",
+  "pk": 1,
+  "fields": {
+    "entrenamiento": 1,
+    "ejercicio": 2,
+    "series": 3,
+    "cantidad": 0.0,
+    "peso": 20.0,
+    "descanso": 60
+  }
+},
+{
+  "model": "api.registroejercicio",
+  "pk": 2,
+  "fields": {
+    "entrenamiento": 1,
+    "ejercicio": 4,
+    "series": 3,
+    "cantidad": 0.0,
+    "peso": 50.0,
+    "descanso": 60
+  }
+},
+{
+  "model": "api.registroejercicio",
+  "pk": 3,
+  "fields": {
+    "entrenamiento": 1,
+    "ejercicio": 3,
+    "series": 3,
+    "cantidad": 0.0,
+    "peso": 10.0,
+    "descanso": 60
+  }
+},
+{
+  "model": "api.registroejercicio",
+  "pk": 4,
+  "fields": {
+    "entrenamiento": 1,
+    "ejercicio": 6,
+    "series": 3,
+    "cantidad": 0.0,
+    "peso": 10.0,
+    "descanso": 60
+  }
+},
+{
+  "model": "api.registroejercicio",
+  "pk": 5,
+  "fields": {
+    "entrenamiento": 1,
+    "ejercicio": 5,
+    "series": 3,
+    "cantidad": 0.0,
+    "peso": 15.0,
+    "descanso": 60
+  }
+},
+{
+  "model": "api.registroejercicio",
+  "pk": 7,
+  "fields": {
+    "entrenamiento": 3,
+    "ejercicio": 4,
+    "series": 3,
+    "cantidad": 0.0,
+    "peso": 3.0,
+    "descanso": 60
+  }
+},
+{
+  "model": "api.registroejercicio",
+  "pk": 8,
+  "fields": {
+    "entrenamiento": 4,
+    "ejercicio": 9,
+    "series": 3,
+    "cantidad": 0.0,
+    "peso": 3.0,
+    "descanso": 60
+  }
+},
+{
+  "model": "api.registroejercicio",
+  "pk": 9,
+  "fields": {
+    "entrenamiento": 5,
+    "ejercicio": 6,
+    "series": 3,
+    "cantidad": 0.0,
+    "peso": 0.0,
+    "descanso": 60
+  }
+},
+{
+  "model": "api.registroejercicio",
+  "pk": 10,
+  "fields": {
+    "entrenamiento": 5,
+    "ejercicio": 3,
+    "series": 3,
+    "cantidad": 0.0,
+    "peso": 0.0,
+    "descanso": 60
+  }
+},
+{
+  "model": "api.registroejercicio",
+  "pk": 11,
+  "fields": {
+    "entrenamiento": 5,
+    "ejercicio": 4,
+    "series": 3,
+    "cantidad": 0.0,
+    "peso": 0.0,
+    "descanso": 60
+  }
+},
+{
+  "model": "api.registroejercicio",
+  "pk": 12,
+  "fields": {
+    "entrenamiento": 6,
+    "ejercicio": 10,
+    "series": 3,
+    "cantidad": 0.0,
+    "peso": 30.0,
+    "descanso": 60
+  }
+},
+{
+  "model": "api.registroejercicio",
+  "pk": 13,
+  "fields": {
+    "entrenamiento": 6,
+    "ejercicio": 11,
+    "series": 3,
+    "cantidad": 0.0,
+    "peso": 30.0,
+    "descanso": 60
+  }
+},
+{
+  "model": "api.registroejercicio",
+  "pk": 14,
+  "fields": {
+    "entrenamiento": 6,
+    "ejercicio": 12,
+    "series": 3,
+    "cantidad": 0.0,
+    "peso": 60.0,
+    "descanso": 60
+  }
+},
+{
+  "model": "api.registroejercicio",
+  "pk": 15,
+  "fields": {
+    "entrenamiento": 6,
+    "ejercicio": 13,
+    "series": 3,
+    "cantidad": 0.0,
+    "peso": 0.0,
+    "descanso": 60
+  }
+},
+{
+  "model": "api.registroejercicio",
+  "pk": 16,
+  "fields": {
+    "entrenamiento": 7,
+    "ejercicio": 7,
+    "series": 3,
+    "cantidad": 0.0,
+    "peso": 0.0,
+    "descanso": 60
+  }
+},
+{
+  "model": "api.registroejercicio",
+  "pk": 17,
+  "fields": {
+    "entrenamiento": 6,
+    "ejercicio": 14,
+    "series": 3,
+    "cantidad": 0.0,
+    "peso": 60.0,
+    "descanso": 60
+  }
+}
+]
