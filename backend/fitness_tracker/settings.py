@@ -132,7 +132,7 @@ if DATABASE_URL:
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES',default_storage_engine=INNODB",
             'charset': 'utf8mb4',
         })
-else:
+elif os.environ.get('DB_NAME'):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
@@ -145,6 +145,13 @@ else:
                 'init_command': "SET sql_mode='STRICT_TRANS_TABLES',default_storage_engine=INNODB",
                 'charset': 'utf8mb4',
             },
+        }
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
 
@@ -230,6 +237,8 @@ SIMPLE_JWT = {
 CORS_ALLOW_ALL_ORIGINS = True
 
 CSRF_TRUSTED_ORIGINS = [
+    "https://*.pythonanywhere.com",
+    "https://rigores.pythonanywhere.com",
     "https://*.trycloudflare.com",
     "https://fitness-tracker-khaki-eight.vercel.app",
     "http://localhost:5173",
