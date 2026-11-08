@@ -40,3 +40,19 @@ export interface AuthResponse {
     access: string;
     refresh: string;
 }
+
+export interface UserTokenPayload {
+    user_id: number;
+    username?: string;
+    email?: string;
+    exp?: number;
+    iat?: number;
+    [key: string]: unknown;
+}
+
+export interface Estadisticas {
+    total_entrenamientos: number;
+    total_ejercicios_registrados: number;
+    entrenamientos_chart: { fecha__date: string; count: number }[];
+    ejercicios_frecuentes: { ejercicio__nombre: string; count: number }[];
+}

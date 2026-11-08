@@ -19,7 +19,7 @@ const Navbar: React.FC = () => {
             <div>
                 {isAuthenticated ? (
                     <>
-                        <Link to="/" style={{ color: '#fff', marginRight: '1rem' }}>Dashboard</Link>
+                        <Link to="/dashboard" style={{ color: '#fff', marginRight: '1rem' }}>Dashboard</Link>
                         <Link to="/entrenamientos" style={{ color: '#fff', marginRight: '1rem' }}>Entrenamientos</Link>
                         <Link to="/ejercicios" style={{ color: '#fff', marginRight: '1rem' }}>Ejercicios</Link>
                         <button onClick={handleLogout} style={{ background: 'transparent', border: 'none', color: '#fff', cursor: 'pointer' }}>Logout</button>

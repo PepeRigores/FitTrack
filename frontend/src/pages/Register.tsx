@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { UserPlus } from 'lucide-react';
+import axios from 'axios';
 import api from '../services/api';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
@@ -49,9 +50,13 @@ const Register: React.FC = () => {
                 password: formData.password
             });
             navigate('/login');
-        } catch (err: any) {
+        } catch (err: unknown) {
             console.error('Registration error:', err);
-            setError(err.response?.data?.username?.[0] || 'Registro fallido. Por favor intenta de nuevo.');
+            if (axios.isAxiosError(err)) {
+                setError(err.response?.data?.username?.[0] || 'Registro fallido. Por favor intenta de nuevo.');
+            } else {
+                setError('Registro fallido. Por favor intenta de nuevo.');
+            }
         } finally {
             setIsLoading(false);
         }

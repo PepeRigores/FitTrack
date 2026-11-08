@@ -29,7 +29,7 @@ const Login: React.FC = () => {
             const response = await api.post('auth/login/', { username, password });
             login(response.data.access, response.data.refresh);
             navigate('/dashboard');
-        } catch (err) {
+        } catch {
             setError('Credenciales inválidas');
         } finally {
             setIsLoading(false);

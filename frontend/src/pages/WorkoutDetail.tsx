@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { ArrowLeft, Plus, Trash2 } from 'lucide-react';
 import Layout from '../components/Layout';
@@ -29,20 +29,19 @@ const WorkoutDetail: React.FC = () => {
         descanso: 60
     });
 
-    useEffect(() => {
-        if (id) {
-            fetchData();
+    const fetchData = useCallback(async () => {
+        if (!id) return;
+        try {
+            const workoutData = await getEntrenamientoById(Number(id));
+            setWorkout(workoutData);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        } finally {
+            setIsLoading(false);
         }
     }, [id]);
 
-    useEffect(() => {
-        const newExerciseId = searchParams.get('newExerciseId');
-        if (newExerciseId) {
-            fetchExerciseDetails(Number(newExerciseId));
-        }
-    }, [searchParams]);
-
-    const fetchExerciseDetails = async (exerciseId: number) => {
+    const fetchExerciseDetails = useCallback(async (exerciseId: number) => {
         try {
             const exercise = await getEjercicioById(exerciseId);
             setSelectedExercise(exercise);
@@ -52,18 +51,18 @@ const WorkoutDetail: React.FC = () => {
         } catch (error) {
             console.error('Error fetching exercise details:', error);
         }
-    };
+    }, []);
 
-    const fetchData = async () => {
-        try {
-            const workoutData = await getEntrenamientoById(Number(id));
-            setWorkout(workoutData);
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        } finally {
-            setIsLoading(false);
+    useEffect(() => {
+        fetchData();
+    }, [fetchData]);
+
+    useEffect(() => {
+        const newExerciseId = searchParams.get('newExerciseId');
+        if (newExerciseId) {
+            fetchExerciseDetails(Number(newExerciseId));
         }
-    };
+    }, [searchParams, fetchExerciseDetails]);
 
     const handleAddExercise = async (e: React.FormEvent) => {
         e.preventDefault();

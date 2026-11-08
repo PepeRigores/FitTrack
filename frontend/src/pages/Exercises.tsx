@@ -268,7 +268,7 @@ const Exercises: React.FC = () => {
                         </label>
                         <select
                             value={currentExercise.unidad || 'reps'}
-                            onChange={(e) => setCurrentExercise({ ...currentExercise, unidad: e.target.value as any })}
+                            onChange={(e) => setCurrentExercise({ ...currentExercise, unidad: e.target.value as Ejercicio['unidad'] })}
                             style={{
                                 width: '100%',
                                 padding: '0.75rem 1rem',

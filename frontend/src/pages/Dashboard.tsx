@@ -5,8 +5,10 @@ import Card from '../components/ui/Card';
 import StatsChart from '../components/StatsChart';
 import { getEstadisticas } from '../services/api';
 
+import type { Estadisticas } from '../types';
+
 const Dashboard: React.FC = () => {
-    const [stats, setStats] = useState<any>(null);
+    const [stats, setStats] = useState<Estadisticas | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -74,7 +76,7 @@ const Dashboard: React.FC = () => {
 
                 <Card title="Ejercicios Mas Frecuentes">
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                        {stats?.ejercicios_frecuentes?.map((item: any, index: number) => (
+                        {stats?.ejercicios_frecuentes?.map((item, index: number) => (
                             <div key={index} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '0.5rem', borderBottom: '1px solid var(--border)' }}>
                                 <span style={{ fontWeight: 500 }}>{item.ejercicio__nombre}</span>
                                 <span style={{ color: 'var(--text-secondary)' }}>{item.count} veces</span>
